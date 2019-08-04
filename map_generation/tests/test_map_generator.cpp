@@ -7,13 +7,14 @@
 
 int main()
 {
-    map::MapGenerator<bool, false, true> map_generator;
+    // Define Map Generator Object
+    map::MapGenerator<size_t , 0, 2> map_generator;
 
+    // Generate a Map
     map_generator.generate_map(10, 10, 4);
 
-    const auto map = map_generator.get_map();
-
-    common::print_2d_vector(map);
+    // Print the Map
+    map_generator.print_map();
 
     return 0;
 }

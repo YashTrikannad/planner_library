@@ -6,7 +6,7 @@
 
 #include <array>
 
-namespace common
+namespace ppl
 {
     struct NodeIndex2d
     {
