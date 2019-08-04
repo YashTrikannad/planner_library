@@ -6,7 +6,7 @@
 
 #include <array>
 
-namespace map
+namespace common
 {
     struct NodeIndex2d
     {

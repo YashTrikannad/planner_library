@@ -14,7 +14,7 @@
 namespace map
 {
 
-    template<typename NodeType, size_t FreeValue, size_t ObstacleValue>
+    template<typename NodeType, NodeType FreeValue, NodeType ObstacleValue>
     class MapGenerator
     {
     public:
