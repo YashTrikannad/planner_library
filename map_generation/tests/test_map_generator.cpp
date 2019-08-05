@@ -8,10 +8,10 @@
 int main()
 {
     // Define Map Generator Object
-    map::MapGenerator<size_t , 0, 2> map_generator;
+    pfl::map::MapGenerator<size_t, 0, 1> map_generator;
 
     // Generate a Map
-    map_generator.generate_map(10, 10, 4);
+    map_generator.generate_map(100, 100, 7);
 
     // Print the Map
     map_generator.print_map();

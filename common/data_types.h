@@ -6,14 +6,17 @@
 
 #include <array>
 
-namespace ppl
+namespace pfl::common
 {
-    struct NodeIndex2d
+
+struct NodeIndex2d
+{
+    NodeIndex2d(size_t row_index, size_t column_index) : row_index_(row_index), column_index_(column_index)
     {
-        NodeIndex2d(size_t row_index, size_t column_index): row_index_(row_index), column_index_(column_index)
-        {
-        }
-        size_t row_index_;
-        size_t column_index_;
-    };
-}
+    }
+
+    size_t row_index_;
+    size_t column_index_;
+};
+
+} // namespace pfl::common
