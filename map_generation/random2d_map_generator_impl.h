@@ -6,8 +6,10 @@
 
 #include "data_types.h"
 #include "random2d_map_generator.h"
+#include "eigen3/Eigen/Core"
 
 #include <random>
+#include <vector>
 
 namespace pfl::map
 {
