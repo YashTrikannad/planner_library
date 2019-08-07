@@ -1,0 +1,2 @@
+add_executable(eigen_graph_test eigen_graph_test.cpp)
+target_link_libraries(eigen_graph_test graph)
