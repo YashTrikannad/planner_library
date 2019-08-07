@@ -5,6 +5,7 @@
 #include "bfs.h"
 #include "random2d_map_generator.h"
 #include "data_types.h"
+#include "../../../map_generation/convert.h"
 
 int main()
 {
@@ -14,15 +15,25 @@ int main()
     // Generate a Map
     map_generator.generate_map(100, 100, 6);
 
+    // Test GridMaps
     const auto map = map_generator.get_map();
+    const auto EigenMap = pfl::convert::convert_2dvector_to_eigen(map);
 
-    pfl::algorithms::bfs<std::vector<std::vector<size_t>>, std::vector<size_t>, size_t> planner(&map);
+    // Set Up Planner
+    pfl::algorithms::bfs<std::vector<std::vector<size_t>>, std::vector<size_t>, size_t> vector_planner(&map);
+    pfl::algorithms::bfs<std::vector<std::vector<size_t>>, std::vector<size_t>, size_t> eigen_planner(&map);
 
-    planner.find_path(0, 1);
+    // Find Path
+    vector_planner.find_path(0, 1);
+    eigen_planner.find_path(0, 1);
 
-    const auto path = planner.get_path();
+    // Get Path
+    const auto vector_path = vector_planner.get_path();
+    const auto eigen_path = eigen_planner.get_path();
 
-    std::cout << (*path)[0];
+    // Test Check
+    std::cout << (*vector_path)[0];
+    std::cout << (*eigen_path)[0];
 
     return 0;
 }
