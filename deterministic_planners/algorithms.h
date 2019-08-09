@@ -1,5 +1,5 @@
 //
-// pathfinding_library
+// planning_library
 // Created by yash on 8/4/19.
 //
 
@@ -24,4 +24,4 @@ public:
     PathType get_path() const = delete;
 };
 
-} // namespace pfl::algorithms
+} // namespace pfl::deterministic_planners
