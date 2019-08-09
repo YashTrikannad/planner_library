@@ -1,5 +1,5 @@
 add_library(bfs INTERFACE)
-target_sources(bfs INTERFACE bfs.h)
+target_sources(bfs INTERFACE bfs.h bfs_impl.h)
 
 target_include_directories(bfs INTERFACE
         "${PROJECT_SOURCE_DIR}/algorithms/bfs"
