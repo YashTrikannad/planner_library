@@ -21,7 +21,7 @@ public:
     using data_type = typename Graph::Scalar;
     using node_type = pfl::common::NodeIndex2d;
 
-    eigen_graph(const graph_type &graph): graph_(graph)
+    eigen_graph(const graph_type &graph): graph_(graph), rows_(graph.rows()), cols_(graph.cols())
     {
     }
 
@@ -29,17 +29,7 @@ public:
     /// Func is applied to each adjacent node of the current node
     /// @tparam Func
     template<typename Func>
-    void for_each_adjacent_node(const node_type &node, Func &&func) const
-    {
-        std::vector<pfl::common::NodeIndex2d> neighbors = {{node.row_index_ , node.row_index_ },
-                                                           {node.row_index_ , node.row_index_ + 1},
-                                                           {node.row_index_ + 1, node.row_index_ },
-                                                           {node.row_index_ + 1, node.row_index_ + 1}};
-        for(const auto& neighbor: neighbors)
-        {
-            func(neighbor);
-        }
-    }
+    void for_each_adjacent_node(const node_type &node, Func &&func) const;
 
 
     /// Func is applied to all the nodes in the graph
@@ -47,9 +37,9 @@ public:
     template<typename Func>
     void for_each_node(Func &&func) const
     {
-        for(size_t col=0; col < graph_.cols(); col++)
+        for(size_t col=0; col < cols_; col++)
         {
-            for(size_t row=0; row < graph_.rows(); row++)
+            for(size_t row=0; row < rows_; row++)
             {
                 func(pfl::common::NodeIndex2d{row, col});
             }
@@ -60,7 +50,11 @@ public:
 
 private:
     graph_type graph_;
+    size_t rows_;
+    size_t cols_;
 };
 
 
 }
+
+#include "EigenGraph_impl.h"

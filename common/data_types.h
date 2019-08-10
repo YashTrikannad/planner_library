@@ -5,12 +5,15 @@
 #pragma once
 
 #include <array>
+#include <ostream>
 
 namespace pfl::common
 {
 
 struct NodeIndex2d
 {
+    NodeIndex2d() = default;
+
     NodeIndex2d(size_t row_index, size_t column_index) : row_index_(row_index), column_index_(column_index)
     {
     }

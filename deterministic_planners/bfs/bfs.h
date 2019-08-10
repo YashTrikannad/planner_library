@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "Eigen/Core"
+#include <optional>
 #include "../algorithms.h"
 
 
