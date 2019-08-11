@@ -28,7 +28,7 @@ int main()
 
 //    // Find Path
 //    vector_planner.find_path({0, 0}, {1, );
-    eigen_planner.find_path({0, 0}, {15, 15});
+    eigen_planner.find_path({0, 0}, {25, 25});
 
     // Get Path
 //    const auto vector_path = vector_planner.get_path();

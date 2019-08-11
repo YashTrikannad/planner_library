@@ -9,7 +9,7 @@
 #include <data_types.h>
 #include <iostream>
 #include <queue>
-
+#include <unordered_map>
 #include <unordered_set>
 
 namespace pfl::algorithms
@@ -19,15 +19,19 @@ template<typename MapType, typename PathType, typename NodeType>
 void bfs<MapType, PathType, NodeType>::find_path(const node_type &start, const node_type &goal)
 {
     std::queue<node_type> open_list;
+    std::unordered_set<node_type> unique_open_set{};
     std::unordered_set<node_type> closed_list;
     std::unordered_map<node_type, node_type> parent_from_node;
     std::vector<node_type> path;
 
     open_list.push(start);
+    unique_open_set.insert(start);
 
     while(!open_list.empty())
     {
         const auto current_node = open_list.front();
+
+        // If goal is reached construct path back to the start
         if(current_node == goal)
         {
             auto path_node = goal;
@@ -43,9 +47,11 @@ void bfs<MapType, PathType, NodeType>::find_path(const node_type &start, const n
         graph_->template for_each_adjacent_node(current_node, [&](const node_type& neighboring_node) {
             if(neighboring_node.obstacle_ == 0)
             {
-                if (closed_list.find(neighboring_node) == closed_list.end())
+                if (unique_open_set.find(neighboring_node) == unique_open_set.end() &&
+                    closed_list.find(neighboring_node) == closed_list.end())
                 {
                     parent_from_node.insert(std::pair<node_type, node_type>(neighboring_node, current_node));
+                    unique_open_set.insert(neighboring_node);
                     open_list.push(neighboring_node);
                 }
             }
