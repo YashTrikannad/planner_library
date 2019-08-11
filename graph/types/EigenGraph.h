@@ -41,7 +41,7 @@ public:
         {
             for(size_t row=0; row < rows_; row++)
             {
-                func(pfl::common::NodeIndex2d{row, col});
+                func(pfl::common::NodeIndex2d{row, col, graph_(cols_, rows_)});
             }
         }
 

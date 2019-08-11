@@ -18,26 +18,40 @@ namespace pfl::algorithms
 template<typename MapType, typename PathType, typename NodeType>
 void bfs<MapType, PathType, NodeType>::find_path(const node_type &start, const node_type &goal)
 {
-    std::unordered_set<node_type> open_list;
+    std::queue<node_type> open_list;
     std::unordered_set<node_type> closed_list;
+    std::unordered_map<node_type, node_type> parent_from_node;
+    std::vector<node_type> path;
 
-    open_list.insert(start);
+    open_list.push(start);
 
     while(!open_list.empty())
     {
         const auto current_node = open_list.front();
         if(current_node == goal)
         {
+            auto path_node = goal;
+            while(path_node != start)
+            {
+                path.emplace_back(path_node);
+                path_node = parent_from_node[path_node];
+            }
+            path.emplace_back(start);
+            path_ = std::move(path);
             return;
         }
-        graph_->template for_each_adjacent_node(current_node, [&](const node_type neighboring_node) {
-            if(closed_list.find(neighboring_node) == closed_list.end())
+        graph_->template for_each_adjacent_node(current_node, [&](const node_type& neighboring_node) {
+            if(neighboring_node.obstacle_ == 0)
             {
-                open_list.insert(neighboring_node);
+                if (closed_list.find(neighboring_node) == closed_list.end())
+                {
+                    parent_from_node.insert(std::pair<node_type, node_type>(neighboring_node, current_node));
+                    open_list.push(neighboring_node);
+                }
             }
         });
 
-        closed_list.insert(open_list.top());
+        closed_list.insert(open_list.front());
         open_list.pop();
     }
 }
