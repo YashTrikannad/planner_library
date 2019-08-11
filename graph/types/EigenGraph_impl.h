@@ -19,7 +19,7 @@ void eigen_graph<Graph>::for_each_adjacent_node(const node_type &node, Func &&fu
 {
     {
         std::array<pfl::common::NodeIndex2d, 4> neighbors{};
-        if(node.row_index_ != 0 && node.row_index_ != rows_ && node.column_index_ != 0 && node.column_index_!= cols_)
+        if(node.row_index_ != 0 && node.row_index_ != rows_-1 && node.column_index_ != 0 && node.column_index_!= cols_-1)
         {
             neighbors[0] =  {node.row_index_ -1, node.column_index_ , graph_(node.row_index_ -1, node.column_index_)};
             neighbors[1] =  {node.row_index_, node.column_index_ + 1, graph_(node.row_index_, node.column_index_ + 1)};
@@ -39,11 +39,11 @@ void eigen_graph<Graph>::for_each_adjacent_node(const node_type &node, Func &&fu
         {
             neighbors[index++]  = {node.row_index_ - 1, node.column_index_, graph_(node.row_index_ - 1, node.column_index_)};
         }
-        if(node.column_index_ != cols_)
+        if(node.column_index_ != cols_-1)
         {
             neighbors[index++]  = {node.row_index_, node.column_index_+1, graph_(node.row_index_, node.column_index_+1)};
         }
-        if(node.row_index_ != rows_)
+        if(node.row_index_ != rows_-1)
         {
             neighbors[index++]  = {node.row_index_ + 1, node.column_index_, graph_(node.row_index_ + 1, node.column_index_)};
         }

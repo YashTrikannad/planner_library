@@ -14,7 +14,7 @@ int main()
     pfl::map::MapGenerator<size_t, 0, 1> map_generator;
 
     // Generate a Map
-    map_generator.generate_map(100, 100, 6);
+    map_generator.generate_map(100, 100, 10);
 
     // Test GridMaps
     const auto map = map_generator.get_map();
@@ -28,7 +28,7 @@ int main()
 
 //    // Find Path
 //    vector_planner.find_path({0, 0}, {1, );
-    eigen_planner.find_path({0, 0}, {25, 25});
+    eigen_planner.find_path({0, 0}, {75, 75});
 
     // Get Path
 //    const auto vector_path = vector_planner.get_path();
