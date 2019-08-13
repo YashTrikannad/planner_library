@@ -14,7 +14,7 @@ int main()
     pfl::map::MapGenerator<size_t, 0, 1> map_generator;
 
     // Generate a Map
-    map_generator.generate_map(100, 100, 10);
+    map_generator.generate_map(400, 400, 10);
 
     // Test GridMaps
     const auto map = map_generator.get_map();
@@ -36,7 +36,6 @@ int main()
 
     // Test Check
 //    std::cout << (*vector_path)[0];
-//    std::cout << *eigen_path;
 
     if(eigen_path)
     {
@@ -47,5 +46,8 @@ int main()
         }
         std::cout << "start";
     }
+
+    pfl::common::display(EigenMap);
+
     return 0;
 }

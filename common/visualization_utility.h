@@ -4,6 +4,12 @@
 
 #pragma once
 
+#include <Eigen/Core>
+#include <opencv2/core.hpp>
+#include <opencv2/core/eigen.hpp>
+#include <opencv2/imgcodecs.hpp>
+#include <opencv2/highgui.hpp>
+
 #include <iostream>
 #include <vector>
 
@@ -21,6 +27,16 @@ void print_2d_vector(const std::vector<std::vector<ElementType>> &container)
         }
         std::cout << "\n";
     }
+}
+
+template <typename Graph>
+void display(const Graph& graph)
+{
+    using namespace cv;
+    Mat image;
+    eigen2cv(graph, image);
+    imshow( "Current Graph", image );
+    waitKey(0);
 }
 
 } // namespace pfl::common
