@@ -18,7 +18,7 @@ int main()
 
     // Test GridMaps
     const auto map = map_generator.get_map();
-    const auto EigenMap = pfl::convert::convert_2dvector_to_eigen(map);
+    auto EigenMap = pfl::convert::convert_2dvector_to_eigen(map);
 
     const auto EigenGraph = pfl::graph::eigen_graph<Eigen::MatrixXd>{EigenMap};
     // Set Up Planner
@@ -28,7 +28,7 @@ int main()
 
 //    // Find Path
 //    vector_planner.find_path({0, 0}, {1, );
-    eigen_planner.find_path({0, 0}, {75, 75});
+    eigen_planner.find_path({0, 0}, {200, 200});
 
     // Get Path
 //    const auto vector_path = vector_planner.get_path();
@@ -47,7 +47,7 @@ int main()
         std::cout << "start";
     }
 
-    pfl::common::display(EigenMap);
+    pfl::common::display(EigenMap, *eigen_path);
 
     return 0;
 }

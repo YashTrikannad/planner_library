@@ -39,4 +39,20 @@ void display(const Graph& graph)
     waitKey(0);
 }
 
+template <typename Graph, typename Path>
+void display(Graph& graph, const Path& path)
+{
+    using namespace cv;
+    Mat image;
+    for(const auto& node:path)
+    {
+        graph(node.row_index_, node.column_index_) = 0.5;
+    }
+
+    eigen2cv(graph, image);
+
+    imshow( "Current Graph", image );
+    waitKey(0);
+}
+
 } // namespace pfl::common
