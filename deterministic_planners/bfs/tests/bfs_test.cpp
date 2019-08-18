@@ -28,7 +28,7 @@ int main()
 
 //    // Find Path
 //    vector_planner.find_path({0, 0}, {1, );
-    eigen_planner.find_path({0, 0}, {200, 200});
+    eigen_planner.find_path({0, 0}, {300, 300});
 
     // Get Path
 //    const auto vector_path = vector_planner.get_path();
@@ -39,15 +39,14 @@ int main()
 
     if(eigen_path)
     {
-        std::cout << " Path Found! \n";
-        for(auto i = eigen_path->begin(); i<eigen_path->end(); ++i)
-        {
-            std::cout << *i << "    <-    ";
-        }
-        std::cout << "start";
+        pfl::common::display(EigenMap, *eigen_path);
+    }
+    else
+    {
+        std::cout << " No Path Exists! :( \n" ;
     }
 
-    pfl::common::display(EigenMap, *eigen_path);
+
 
     return 0;
 }

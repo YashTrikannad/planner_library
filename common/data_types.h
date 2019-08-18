@@ -51,6 +51,44 @@ inline bool operator!=(const NodeIndex2d& lhs, const NodeIndex2d& rhs)
     return lhs.row_index_ != rhs.row_index_ || lhs.column_index_ != rhs.column_index_;
 }
 
+struct direction
+{
+};
+
+struct up
+{
+    static constexpr size_t change_rows = -1;
+    static constexpr size_t change_cols = 0;
+    using type = direction;
+};
+
+struct down
+{
+    static constexpr size_t change_rows = +1;
+    static constexpr size_t change_cols = 0;
+    using type = direction;
+};
+
+struct left
+{
+    static constexpr size_t change_rows = 0;
+    static constexpr size_t change_cols = -1;
+    using type = direction;
+};
+
+struct right
+{
+    static constexpr size_t change_rows = 0;
+    static constexpr size_t change_cols = +1;
+    using type = direction;
+};
+
+
+struct cell_type
+{
+    using type = double;
+};
+
 } // namespace pfl::common
 
 // Include hash for NodeIndex2d in std namespace

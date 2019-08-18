@@ -18,6 +18,12 @@ namespace pfl::algorithms
 template<typename MapType, typename PathType, typename NodeType>
 void bfs<MapType, PathType, NodeType>::find_path(const node_type &start, const node_type &goal)
 {
+    if(graph_->template get_node_property(start, common::cell_type{}) == 1 ||
+            graph_->template get_node_property(goal, common::cell_type{}) == 1)
+    {
+        std::__throw_logic_error("Not able to find path. Start and Goal must be in free space. ");
+    }
+
     std::queue<node_type> open_list;
     std::unordered_set<node_type> unique_open_set{};
     std::unordered_set<node_type> closed_list;
@@ -44,7 +50,7 @@ void bfs<MapType, PathType, NodeType>::find_path(const node_type &start, const n
             path_ = std::move(path);
             return;
         }
-        graph_->template for_each_adjacent_node(current_node, [&](const node_type& neighboring_node) {
+        graph_->template for_each_adjacent_node<4>(current_node, [&](const node_type& neighboring_node) {
             if(neighboring_node.obstacle_ == 0)
             {
                 if (unique_open_set.find(neighboring_node) == unique_open_set.end() &&
