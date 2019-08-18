@@ -10,7 +10,7 @@
 
 #include <vector>
 
-namespace pfl::graph
+namespace pl::graph
 {
 
 template <typename Graph>
@@ -105,15 +105,15 @@ auto eigen_graph<Graph>::get_4_neighbor(const node_type& node) const
 {
     if(node.row_index_ != 0 && node.row_index_ != rows_-1 && node.column_index_ != 0 && node.column_index_!= cols_-1)
     {
-        return  std::vector<pfl::common::NodeIndex2d>{get_adjacent_node(node, common::up{}),
-                                                      get_adjacent_node(node, common::down{}),
-                                                      get_adjacent_node(node, common::left{}),
-                                                      get_adjacent_node(node, common::right{})};
+        return  std::vector<pl::common::NodeIndex2d>{get_adjacent_node(node, common::up{}),
+                                                     get_adjacent_node(node, common::down{}),
+                                                     get_adjacent_node(node, common::left{}),
+                                                     get_adjacent_node(node, common::right{})};
 
     }
     else
     {
-        std::vector<pfl::common::NodeIndex2d> neighbors{};
+        std::vector<pl::common::NodeIndex2d> neighbors{};
         if(const auto node_maybe = get_adjacent_node_with_check(node, common::up{}); node_maybe) neighbors.emplace_back(*node_maybe);
         if(const auto node_maybe = get_adjacent_node_with_check(node, common::down{}); node_maybe) neighbors.emplace_back(*node_maybe);
         if(const auto node_maybe = get_adjacent_node_with_check(node, common::left{}); node_maybe) neighbors.emplace_back(*node_maybe);
@@ -127,7 +127,7 @@ auto eigen_graph<Graph>::get_4_neighbor(const node_type& node) const
 template <typename Graph>
 auto eigen_graph<Graph>::get_8_neighbor(const node_type& node) const
 {
-    std::vector<pfl::common::NodeIndex2d> neighbors = get_4_neighbor(node);
+    std::vector<pl::common::NodeIndex2d> neighbors = get_4_neighbor(node);
     if(node.row_index_ != 0 && node.row_index_ != rows_-1 && node.column_index_ != 0 && node.column_index_!= cols_-1)
     {
         neighbors.insert(neighbors.end(), {get_adjacent_node(node, common::top_right{}),

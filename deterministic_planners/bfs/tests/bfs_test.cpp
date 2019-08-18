@@ -11,19 +11,19 @@
 int main()
 {
     // Define Map Generator Object
-    pfl::map::MapGenerator<size_t, 0, 1> map_generator;
+    pl::map::MapGenerator<size_t, 0, 1> map_generator;
 
     // Generate a Map
     map_generator.generate_map(400, 400, 10);
 
     // Test GridMaps
     const auto map = map_generator.get_map();
-    auto EigenMap = pfl::convert::convert_2dvector_to_eigen(map);
+    auto EigenMap = pl::convert::convert_2dvector_to_eigen(map);
 
-    const auto EigenGraph = pfl::graph::eigen_graph<Eigen::MatrixXd>{EigenMap};
+    const auto EigenGraph = pl::graph::eigen_graph<Eigen::MatrixXd>{EigenMap};
     // Set Up Planner
-    pfl::algorithms::bfs<std::vector<std::vector<size_t>>, std::vector<size_t>, size_t> vector_planner(&map);
-    pfl::algorithms::bfs<pfl::graph::eigen_graph<Eigen::MatrixXd>, std::vector<pfl::common::NodeIndex2d>, pfl::common::NodeIndex2d>
+    pl::algorithms::bfs<std::vector<std::vector<size_t>>, std::vector<size_t>, size_t> vector_planner(&map);
+    pl::algorithms::bfs<pl::graph::eigen_graph<Eigen::MatrixXd>, std::vector<pl::common::NodeIndex2d>, pl::common::NodeIndex2d>
             eigen_planner(&EigenGraph);
 
 //    // Find Path
@@ -35,7 +35,7 @@ int main()
     // Test Check
     if(eigen_path)
     {
-        pfl::common::display(EigenMap, *eigen_path);
+        pl::common::display(EigenMap, *eigen_path);
     }
     else
     {

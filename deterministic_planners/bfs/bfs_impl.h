@@ -12,7 +12,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-namespace pfl::algorithms
+namespace pl::algorithms
 {
 
 template<typename MapType, typename PathType, typename NodeType>

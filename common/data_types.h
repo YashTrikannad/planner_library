@@ -8,7 +8,7 @@
 #include <ostream>
 #include <boost/functional/hash.hpp>
 
-namespace pfl::common
+namespace pl::common
 {
 
 struct NodeIndex2d
@@ -117,10 +117,10 @@ struct cell_type
     using type = double;
 };
 
-} // namespace pfl::common
+} // namespace pl::common
 
 // Include hash for NodeIndex2d in std namespace
 namespace std
 {
-    template<> struct hash<::pfl::common::NodeIndex2d> : boost::hash<::pfl::common::NodeIndex2d> {};
+    template<> struct hash<::pl::common::NodeIndex2d> : boost::hash<::pl::common::NodeIndex2d> {};
 }

@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace pfl::algorithms
+namespace pl::algorithms
 {
 
 template<typename GraphType, typename PathType, typename NodeType>
@@ -24,4 +24,4 @@ public:
     PathType get_path() const = delete;
 };
 
-} // namespace pfl::deterministic_planners
+} // namespace pl::deterministic_planners

@@ -11,7 +11,7 @@
 #include <random>
 #include <vector>
 
-namespace pfl::map
+namespace pl::map
 {
 
 template<typename NodeType, NodeType FreeValue, NodeType ObstacleValue>
@@ -48,4 +48,4 @@ void map::MapGenerator<NodeType, FreeValue, ObstacleValue>::generate_map(size_t 
     map_ = map;
 }
 
-} // namespace pfl::map
+} // namespace pl::map

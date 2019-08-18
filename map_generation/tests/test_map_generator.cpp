@@ -9,13 +9,13 @@
 int main()
 {
     // Define Map Generator Object
-    pfl::map::MapGenerator<size_t, 0, 1> map_generator;
+    pl::map::MapGenerator<size_t, 0, 1> map_generator;
 
     // Generate a Map
     map_generator.generate_map(100, 100, 7);
 
     // Convert 2dvector_to_eigen
-    const auto EigenMap = pfl::convert::convert_2dvector_to_eigen(map_generator.get_map());
+    const auto EigenMap = pl::convert::convert_2dvector_to_eigen(map_generator.get_map());
 
     // Print the Map
     std::cout << EigenMap;

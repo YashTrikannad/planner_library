@@ -8,7 +8,7 @@
 #include <cstddef>
 
 
-namespace pfl::graph
+namespace pl::graph
 {
 
 

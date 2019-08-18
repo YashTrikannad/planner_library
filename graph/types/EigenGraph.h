@@ -9,7 +9,7 @@
 #include "../../common/data_types.h"
 
 
-namespace pfl::graph
+namespace pl::graph
 {
 
 
@@ -19,7 +19,7 @@ class eigen_graph
 public:
     using graph_type = Graph;
     using data_type = typename Graph::Scalar;
-    using node_type = pfl::common::NodeIndex2d;
+    using node_type = pl::common::NodeIndex2d;
 
     eigen_graph(const graph_type &graph): graph_(graph), rows_(graph.rows()), cols_(graph.cols())
     {
@@ -48,7 +48,7 @@ public:
         {
             for(size_t row=0; row < rows_; row++)
             {
-                func(pfl::common::NodeIndex2d{row, col, graph_(cols_, rows_)});
+                func(pl::common::NodeIndex2d{row, col, graph_(cols_, rows_)});
             }
         }
     }

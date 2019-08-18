@@ -13,7 +13,7 @@
 #include <iostream>
 #include <vector>
 
-namespace pfl::common
+namespace pl::common
 {
 
 template<typename ElementType>
@@ -55,4 +55,4 @@ void display(Graph& graph, const Path& path)
     waitKey(0);
 }
 
-} // namespace pfl::common
+} // namespace pl::common

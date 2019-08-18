@@ -8,7 +8,7 @@
 #include "../algorithms.h"
 
 
-namespace pfl::algorithms
+namespace pl::algorithms
 {
 
 template<typename GraphType, typename PathType, typename NodeType>

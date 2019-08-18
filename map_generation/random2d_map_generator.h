@@ -13,7 +13,7 @@
 #include <vector>
 #include <data_types.h>
 
-namespace pfl::map
+namespace pl::map
 {
 
 template<typename NodeType, NodeType FreeValue, NodeType ObstacleValue>
@@ -52,6 +52,6 @@ private:
 };
 
 
-} // namespace pfl::map
+} // namespace pl::map
 
 #include "random2d_map_generator_impl.h"

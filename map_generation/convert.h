@@ -7,7 +7,7 @@
 #include <vector>
 #include "Eigen/Dense"
 
-namespace pfl::convert
+namespace pl::convert
 {
 
 template <typename NodeType>
