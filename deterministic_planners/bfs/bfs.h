@@ -26,6 +26,7 @@ public:
         graph_ = &map;
     }
 
+    template <size_t NumberNeighbors = 8>
     void find_path(const node_type &start, const node_type &goal);
 
 

@@ -25,9 +25,17 @@ void eigen_graph<Graph>::for_each_adjacent_node(const node_type &node, Func &&fu
             func(neighbor);
         }
     }
+    else if constexpr (N == 8)
+    {
+        const auto neighbors = get_8_neighbor(node);
+        for(const auto& neighbor: neighbors)
+        {
+            func(neighbor);
+        }
+    }
     else
     {
-        static_assert(" Currenly the library only supports 4 neighbor operations. ");
+        static_assert(N == 4 || N == 8, " Currenly this graph only supports 4/8 neighbor operations. ");
     }
 }
 
@@ -65,6 +73,26 @@ std::optional<typename eigen_graph<Graph>::node_type> eigen_graph<Graph>::get_ad
         if(node.column_index_ != cols_-1) return get_adjacent_node(node, direction);
         return std::nullopt;
     }
+    if constexpr (std::is_same<Direction, common::top_left>{})
+    {
+        if(node.row_index_ != 0 && node.column_index_ !=0) return get_adjacent_node(node, direction);
+        return std::nullopt;
+    }
+    else if (std::is_same<Direction, common::top_right>{})
+    {
+        if(node.row_index_ != 0 && node.column_index_ != cols_-1) return get_adjacent_node(node, direction);
+        return std::nullopt;
+    }
+    else if (std::is_same<Direction, common::bottom_left>{})
+    {
+        if(node.row_index_!= rows_-1 && node.column_index_ != 0) return get_adjacent_node(node, direction);
+        return std::nullopt;
+    }
+    else if (std::is_same<Direction, common::bottom_right>{})
+    {
+        if(node.row_index_!= rows_-1 && node.column_index_ != cols_-1) return get_adjacent_node(node, direction);
+        return std::nullopt;
+    }
     else
     {
         static_assert("Direction should be either up, down, left or right");
@@ -90,6 +118,30 @@ auto eigen_graph<Graph>::get_4_neighbor(const node_type& node) const
         if(const auto node_maybe = get_adjacent_node_with_check(node, common::down{}); node_maybe) neighbors.emplace_back(*node_maybe);
         if(const auto node_maybe = get_adjacent_node_with_check(node, common::left{}); node_maybe) neighbors.emplace_back(*node_maybe);
         if(const auto node_maybe = get_adjacent_node_with_check(node, common::right{}); node_maybe) neighbors.emplace_back(*node_maybe);
+        return neighbors;
+    }
+}
+
+
+
+template <typename Graph>
+auto eigen_graph<Graph>::get_8_neighbor(const node_type& node) const
+{
+    std::vector<pfl::common::NodeIndex2d> neighbors = get_4_neighbor(node);
+    if(node.row_index_ != 0 && node.row_index_ != rows_-1 && node.column_index_ != 0 && node.column_index_!= cols_-1)
+    {
+        neighbors.insert(neighbors.end(), {get_adjacent_node(node, common::top_right{}),
+                                      get_adjacent_node(node, common::top_left{}),
+                                      get_adjacent_node(node, common::bottom_right{}),
+                                      get_adjacent_node(node, common::bottom_left{})});
+        return neighbors;
+    }
+    else
+    {
+        if(const auto node_maybe = get_adjacent_node_with_check(node, common::top_right{}); node_maybe) neighbors.emplace_back(*node_maybe);
+        if(const auto node_maybe = get_adjacent_node_with_check(node, common::top_left{}); node_maybe) neighbors.emplace_back(*node_maybe);
+        if(const auto node_maybe = get_adjacent_node_with_check(node, common::bottom_right{}); node_maybe) neighbors.emplace_back(*node_maybe);
+        if(const auto node_maybe = get_adjacent_node_with_check(node, common::bottom_left{}); node_maybe) neighbors.emplace_back(*node_maybe);
         return neighbors;
     }
 }

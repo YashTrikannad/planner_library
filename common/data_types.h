@@ -83,6 +83,34 @@ struct right
     using type = direction;
 };
 
+struct top_right
+{
+    static constexpr size_t change_rows = -1;
+    static constexpr size_t change_cols = +1;
+    using type = direction;
+};
+
+struct top_left
+{
+    static constexpr size_t change_rows = -1;
+    static constexpr size_t change_cols = -1;
+    using type = direction;
+};
+
+struct bottom_right
+{
+    static constexpr size_t change_rows = +1;
+    static constexpr size_t change_cols = +1;
+    using type = direction;
+};
+
+struct bottom_left
+{
+    static constexpr size_t change_rows = +1;
+    static constexpr size_t change_cols = -1;
+    using type = direction;
+};
+
 
 struct cell_type
 {

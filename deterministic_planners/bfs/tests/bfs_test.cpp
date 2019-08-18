@@ -27,16 +27,12 @@ int main()
             eigen_planner(&EigenGraph);
 
 //    // Find Path
-//    vector_planner.find_path({0, 0}, {1, );
-    eigen_planner.find_path({0, 0}, {300, 300});
+    eigen_planner.find_path<8>({0, 0}, {300, 300});
 
     // Get Path
-//    const auto vector_path = vector_planner.get_path();
     const auto eigen_path = eigen_planner.get_path();
 
     // Test Check
-//    std::cout << (*vector_path)[0];
-
     if(eigen_path)
     {
         pfl::common::display(EigenMap, *eigen_path);
