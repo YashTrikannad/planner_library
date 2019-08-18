@@ -51,64 +51,57 @@ inline bool operator!=(const NodeIndex2d& lhs, const NodeIndex2d& rhs)
     return lhs.row_index_ != rhs.row_index_ || lhs.column_index_ != rhs.column_index_;
 }
 
+// tags used in tag dispatching ( Currently only for 2d )
 struct direction
 {
 };
 
-struct up
+struct up : direction
 {
     static constexpr size_t change_rows = -1;
     static constexpr size_t change_cols = 0;
-    using type = direction;
 };
 
-struct down
+struct down : direction
 {
     static constexpr size_t change_rows = +1;
     static constexpr size_t change_cols = 0;
-    using type = direction;
 };
 
-struct left
+struct left : direction
 {
     static constexpr size_t change_rows = 0;
     static constexpr size_t change_cols = -1;
-    using type = direction;
 };
 
-struct right
+struct right : direction
 {
     static constexpr size_t change_rows = 0;
     static constexpr size_t change_cols = +1;
-    using type = direction;
 };
 
-struct top_right
+struct top_right : direction
 {
     static constexpr size_t change_rows = -1;
     static constexpr size_t change_cols = +1;
-    using type = direction;
 };
 
 struct top_left
 {
     static constexpr size_t change_rows = -1;
     static constexpr size_t change_cols = -1;
-    using type = direction;
 };
 
-struct bottom_right
+struct bottom_right : direction
 {
     static constexpr size_t change_rows = +1;
     static constexpr size_t change_cols = +1;
-    using type = direction;
 };
 
-struct bottom_left
+struct bottom_left : direction
 {
     static constexpr size_t change_rows = +1;
     static constexpr size_t change_cols = -1;
-    using type = direction;
 };
 
 

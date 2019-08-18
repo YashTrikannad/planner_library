@@ -6,3 +6,4 @@ target_include_directories(dfs INTERFACE
         )
 
 target_link_libraries(dfs INTERFACE map_generation common)
+add_subdirectory(example)
