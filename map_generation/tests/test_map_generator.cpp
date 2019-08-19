@@ -9,7 +9,7 @@
 int main()
 {
     // Define Map Generator Object
-    pl::map::MapGenerator<size_t, 0, 1> map_generator;
+    pl::map::ConstraintMapGenerator<size_t, 0, 1> map_generator;
 
     // Generate a Map
     map_generator.generate_map(100, 100, 7);

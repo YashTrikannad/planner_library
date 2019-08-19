@@ -11,13 +11,14 @@
 int main()
 {
     // Define Map Generator Object
-    pl::map::MapGenerator<size_t, 0, 1> map_generator;
+    pl::map::ConstraintMapGenerator<size_t, 0, 1> map_generator;
 
     // Generate a Map
     map_generator.generate_map(400, 400, 10);
 
     // Test GridMaps
     const auto map = map_generator.get_map();
+
     auto EigenMap = pl::convert::convert_2dvector_to_eigen(map);
 
     const auto EigenGraph = pl::graph::eigen_graph<Eigen::MatrixXd>{EigenMap};

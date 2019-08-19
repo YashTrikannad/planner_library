@@ -15,7 +15,7 @@ namespace pl::map
 {
 
 template<typename NodeType, NodeType FreeValue, NodeType ObstacleValue>
-void map::MapGenerator<NodeType, FreeValue, ObstacleValue>::generate_map(size_t rows, size_t cols, size_t n_obstacles)
+void map::ConstraintMapGenerator<NodeType, FreeValue, ObstacleValue>::generate_map(size_t rows, size_t cols, size_t n_obstacles)
 {
     std::vector<std::vector<node_type>> map(rows, std::vector<node_type>(cols, FreeValue));
 
