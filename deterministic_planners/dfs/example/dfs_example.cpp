@@ -26,12 +26,12 @@ int main()
     pl::algorithms::dfs<pl::graph::eigen_graph<Eigen::MatrixXd>, std::vector<pl::common::NodeIndex2d>, pl::common::NodeIndex2d>
             eigen_planner(&EigenGraph);
 
-//    // Find Path
+    // Find Path
     eigen_planner.find_path<8>({0, 0}, {300, 300});
-//
+
     // Get Path
     const auto eigen_path = eigen_planner.get_path();
-//
+
 //    // Test Check
     if(eigen_path)
     {

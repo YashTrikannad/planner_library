@@ -39,6 +39,7 @@ struct NodeIndex2d
     size_t obstacle_;
     size_t row_index_;
     size_t column_index_;
+    size_t node_traversal_cost_;
 };
 
 inline bool operator==(const NodeIndex2d& lhs, const NodeIndex2d& rhs)

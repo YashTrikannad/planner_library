@@ -5,3 +5,4 @@ target_include_directories(algorithms INTERFACE "${PROJECT_SOURCE_DIR}/determini
 
 add_subdirectory(bfs)
 add_subdirectory(dfs)
+add_subdirectory(dijkstra)

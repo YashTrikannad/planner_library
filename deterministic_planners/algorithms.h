@@ -12,10 +12,11 @@ template<typename GraphType, typename PathType, typename NodeType>
 class solver
 {
 public:
+    using graph_type = GraphType;
     using node_type = NodeType;
 
     /// set the map
-    void update_map(const GraphType &map) = delete;
+    void update_map(const graph_type &graph) = delete;
 
     /// find the path from start to goal
     void find_path(const node_type &start, const node_type &goal) = delete;
