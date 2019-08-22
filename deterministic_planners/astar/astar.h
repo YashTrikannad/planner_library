@@ -12,12 +12,12 @@ namespace pl::algorithms
 {
 
 template<typename GraphType, typename PathType, typename NodeType>
-class dijkstra : public solver<GraphType, PathType, NodeType>
+class astar : public solver<GraphType, PathType, NodeType>
 {
 public:
     using node_type = NodeType;
 
-    explicit dijkstra(const GraphType *graph) : graph_(graph)
+    explicit astar(const GraphType *graph) : graph_(graph)
     {
     }
 
@@ -42,4 +42,4 @@ private:
 
 }
 
-#include "dijkstra_impl.h"
+#include "astar_impl.h"

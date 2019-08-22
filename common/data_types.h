@@ -111,6 +111,11 @@ struct cell_type
     using type = double;
 };
 
+struct cost_tag
+{
+    using type = double;
+};
+
 } // namespace pl::common
 
 // Include hash for NodeIndex2d in std namespace

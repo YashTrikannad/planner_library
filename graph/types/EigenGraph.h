@@ -13,6 +13,7 @@ namespace pl::graph
 {
 
 
+/// Base Class with graph type as Eigen Matrix
 template<typename Graph>
 class eigen_graph
 {
@@ -25,14 +26,13 @@ public:
     {
     }
 
-
     /// Func is applied to each adjacent node of the current node
     /// @tparam Func
     template<size_t N, typename Func>
     void for_each_adjacent_node(const node_type &node, Func &&func) const;
 
 
-    template<typename Tag>
+    template<typename Tag, std::enable_if_t<std::is_same<Tag, pl::common::cell_type>::value, int> = 0>
     typename Tag::type get_node_property(const node_type &node, Tag&& tag) const
     {
         if constexpr (std::is_same<Tag, common::cell_type>{}) return graph_(node.row_index_, node.column_index_);
@@ -88,6 +88,32 @@ private:
     /// @return adjacent node if present else null_opt
     template <typename Direction>
     std::optional<node_type> get_adjacent_node_with_check(const node_type& node, Direction direction) const;
+};
+
+
+/// Wrapper Class with added layer of costs required by heuristic algorithms
+template <template<class> class Wrapper, typename Graph >
+class eigen_cost_graph : public Wrapper<Graph>
+{
+public:
+    using graph_type = Graph;
+    using node_type = pl::common::NodeIndex2d;
+
+    eigen_cost_graph(const graph_type& graph) : Wrapper<Graph>(graph),
+            cost_graph_(Eigen::MatrixXd::Zero(graph.rows(), graph.cols()))
+    {}
+
+    template<typename Tag, std::enable_if_t<std::is_same<Tag, pl::common::cost_tag>::value, int> = 0>
+    typename Tag::type get_node_property(const node_type &node, Tag&& tag) const
+    {
+        if constexpr (std::is_same<Tag, common::cell_type>{}) return cost_graph_(node.row_index_, node.column_index_);
+        static_assert(" The given property is not supported by this graph currently ");
+    }
+
+    using  Wrapper<Graph>::get_node_property;
+
+private:
+    graph_type cost_graph_;
 };
 
 }
