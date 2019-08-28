@@ -141,7 +141,7 @@ public:
         cost_graph_[node.row_index_][node.column_index_].g_ = g_value;
     }
 
-    std::vector<std::vector<common::cost_type>> get_cost_graph()
+    std::vector<std::vector<common::cost_type>> get_cost_graph() const
     {
         return cost_graph_;
     }

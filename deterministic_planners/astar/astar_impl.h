@@ -65,7 +65,6 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
         // Check if the current node is the goal
         if(current_node == goal)
         {
-//            pl::common::display(graph_->template get_cost_graph());
             // If goal is reached, backtrack to the start and return the backtracked vector
             auto path_node = goal;
             while(path_node != start)
@@ -86,14 +85,15 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
             // If child in closed list or non traversable, continue
             if(neighboring_node.value_ == 0 && closed_set.find(neighboring_node) == closed_set.end())
             {
+                // If child not in open list
                 if(open_list_set.find(neighboring_node) == open_list_set.end())
                 {
                     // Add cost as current_node + 1
                     graph_->template update_node_property(neighboring_node, common::g_cost_tag{}, current_node_g_cost + 1);
 
                     // compute heuristic value
-                    const auto heuristic_value = sqrt(pow((goal.row_index_ - neighboring_node.row_index_),2) +
-                                                              goal.column_index_- pow((neighboring_node.column_index_),2));
+                    const auto heuristic_value = std::min(pow((goal.row_index_ - neighboring_node.row_index_),1),
+                                                              goal.column_index_- pow((neighboring_node.column_index_),1));
 
                     graph_->template update_node_property(neighboring_node, common::f_cost_tag{}, current_node_g_cost +
                             1 + heuristic_value);
@@ -110,14 +110,8 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
                     if(graph_->template get_node_property(neighboring_node, common::g_cost_tag{}) >
                             current_node_g_cost)
                     {
-                        // compute heuristic value
-                        const auto heuristic_value = sqrt(pow((goal.row_index_ - neighboring_node.row_index_),2) +
-                                                          goal.column_index_- pow((neighboring_node.column_index_),2));
-
                         graph_->template update_node_property(neighboring_node, common::g_cost_tag{},
                                                               current_node_g_cost + 1);
-                        graph_->template update_node_property(neighboring_node, common::g_cost_tag{},
-                                                              current_node_g_cost + 1 + heuristic_value);
 
                         // replace the parent as current and cost with current cost
                         parent_from_node[neighboring_node] = current_node;
