@@ -17,7 +17,7 @@ class astar : public solver<GraphType, PathType, NodeType>
 public:
     using node_type = NodeType;
 
-    explicit astar(const GraphType *graph) : graph_(graph)
+    explicit astar(GraphType *graph) : graph_(graph)
     {
     }
 
@@ -36,7 +36,7 @@ public:
     }
 
 private:
-    const GraphType *graph_;
+    GraphType *graph_;
     std::optional<PathType> path_;
 };
 

@@ -52,7 +52,7 @@ void bfs<MapType, PathType, NodeType>::find_path(const node_type &start, const n
             return;
         }
         graph_->template for_each_adjacent_node<NumberNeighbors>(current_node, [&](const node_type& neighboring_node) {
-            if(neighboring_node.obstacle_ == 0 && unique_open_set.find(neighboring_node) == unique_open_set.end() &&
+            if(neighboring_node.value_ == 0 && unique_open_set.find(neighboring_node) == unique_open_set.end() &&
                     closed_list.find(neighboring_node) == closed_list.end())
                 {
                     parent_from_node.insert(std::pair<node_type, node_type>(neighboring_node, current_node));

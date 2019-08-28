@@ -19,7 +19,7 @@ struct NodeIndex2d
     {
     }
 
-    NodeIndex2d(size_t row_index, size_t column_index, size_t obstacle) : row_index_(row_index), column_index_(column_index), obstacle_(obstacle)
+    NodeIndex2d(size_t row_index, size_t column_index, size_t obstacle) : row_index_(row_index), column_index_(column_index), value_(obstacle)
     {
     }
 
@@ -36,7 +36,7 @@ struct NodeIndex2d
         os << "(" << node.row_index_ << ", " << node.column_index_ <<")";
     }
 
-    size_t obstacle_;
+    size_t value_;
     size_t row_index_;
     size_t column_index_;
     size_t node_traversal_cost_;

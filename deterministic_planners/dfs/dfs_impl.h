@@ -51,7 +51,7 @@ void dfs<MapType, PathType, NodeType>::find_path(const node_type &start, const n
         }
 
         graph_->template for_each_adjacent_node<NumberNeighbors>(current_node, [&](const node_type& neighboring_node){
-            if(neighboring_node.obstacle_ == 0 && closed_set.find(neighboring_node) == closed_set.end())
+            if(neighboring_node.value_ == 0 && closed_set.find(neighboring_node) == closed_set.end())
             {
                 parent_from_node.insert(std::pair<node_type, node_type>(neighboring_node, current_node));
                 dfs_stack.push(neighboring_node);

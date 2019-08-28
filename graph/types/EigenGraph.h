@@ -97,6 +97,7 @@ class eigen_cost_graph : public Wrapper<Graph>
 {
 public:
     using graph_type = Graph;
+    using data_type = typename Graph::Scalar;
     using node_type = pl::common::NodeIndex2d;
 
     eigen_cost_graph(const graph_type& graph) : Wrapper<Graph>(graph),
@@ -106,8 +107,19 @@ public:
     template<typename Tag, std::enable_if_t<std::is_same<Tag, pl::common::cost_tag>::value, int> = 0>
     typename Tag::type get_node_property(const node_type &node, Tag&& tag) const
     {
-        if constexpr (std::is_same<Tag, common::cell_type>{}) return cost_graph_(node.row_index_, node.column_index_);
-        static_assert(" The given property is not supported by this graph currently ");
+        return cost_graph_(node.row_index_, node.column_index_);
+    }
+
+    ///
+    /// @tparam Tag - Type of Tag
+    /// @param node
+    /// @param tag
+    /// @param value
+    /// @return update the property value of graph (Cost)
+    template<typename Tag, std::enable_if_t<std::is_same<Tag, pl::common::cost_tag>::value, int> = 0>
+    void update_node_property(const node_type &node, Tag&& tag, data_type&& value)
+    {
+        cost_graph_(node.row_index_, node.column_index_) = value;
     }
 
     using  Wrapper<Graph>::get_node_property;
