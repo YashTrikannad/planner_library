@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include "data_types.h"
+
 #include <Eigen/Core>
 #include <opencv2/core.hpp>
 #include <opencv2/core/eigen.hpp>
@@ -50,6 +52,20 @@ void display(Graph& graph, const Path& path)
     }
 
     eigen2cv(graph, image);
+
+    imshow( "Current Graph", image );
+    waitKey(0);
+}
+
+
+void display(std::vector<std::vector<common::cost_type>> cost_vector)
+{
+    using namespace cv;
+
+    cv::Mat image(cost_vector.size(), cost_vector.at(0).size(), CV_64FC1);
+    for(int i=0; i<image.rows; ++i)
+        for(int j=0; j<image.cols; ++j)
+            image.at<double>(i, j) = cost_vector.at(i).at(j).f_;
 
     imshow( "Current Graph", image );
     waitKey(0);

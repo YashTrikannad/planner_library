@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "../../common/visualization_utility.h"
 
 #include <data_types.h>
 #include <iostream>
@@ -28,8 +29,8 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
     std::vector<node_type> path;
 
     auto lesser_cost = [&](node_type left_node, node_type right_node) {
-        return (graph_->template get_node_property(left_node, common::cost_tag{})) >
-        (graph_->template get_node_property(right_node, common::cost_tag{}));
+        return (graph_->template get_node_property(left_node, common::f_cost_tag{})) >
+        (graph_->template get_node_property(right_node, common::f_cost_tag{}));
     };
 
     // Initialize Open List - Contains all nodes that are currently on the frontier/ that need to be  explore
@@ -53,12 +54,18 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
     {
         // Choose the current node as the node with the least F cost
         const auto current_node = open_list.top();
+
+        // Remove the current node from the open list
         open_list.pop();
         open_list_set.erase(current_node);
+
+        // Add the current node to the closed set
+        closed_set.insert(current_node);
 
         // Check if the current node is the goal
         if(current_node == goal)
         {
+//            pl::common::display(graph_->template get_cost_graph());
             // If goal is reached, backtrack to the start and return the backtracked vector
             auto path_node = goal;
             while(path_node != start)
@@ -71,41 +78,53 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
             return;
         }
 
-        const auto current_node_cost = graph_->template get_node_property(current_node, common::cost_tag{});
+        const auto current_node_g_cost = graph_->template get_node_property(current_node, common::g_cost_tag{});
 
         // Else iterate through all children. Initialized with cost = current
         graph_->template for_each_adjacent_node<NumberNeighbors>(current_node, [&](const node_type& neighboring_node) {
 
             // If child in closed list or non traversable, continue
-            if(neighboring_node.value_ == 0 || closed_set.find(neighboring_node) == closed_set.end())
+            if(neighboring_node.value_ == 0 && closed_set.find(neighboring_node) == closed_set.end())
             {
                 if(open_list_set.find(neighboring_node) == open_list_set.end())
                 {
                     // Add cost as current_node + 1
-                    graph_->template update_node_property(neighboring_node, common::cost_tag{}, current_node_cost + 1);
+                    graph_->template update_node_property(neighboring_node, common::g_cost_tag{}, current_node_g_cost + 1);
+
+                    // compute heuristic value
+                    const auto heuristic_value = sqrt(pow((goal.row_index_ - neighboring_node.row_index_),2) +
+                                                              goal.column_index_- pow((neighboring_node.column_index_),2));
+
+                    graph_->template update_node_property(neighboring_node, common::f_cost_tag{}, current_node_g_cost +
+                            1 + heuristic_value);
 
                     // Add the child to the open list
-                    open_list_set.insert(neighboring_node);current_node
+                    parent_from_node[neighboring_node] = current_node;
+                    open_list_set.insert(neighboring_node);
                     open_list.push(neighboring_node);
                 }
                 // Else if child in open list
                 else
                 {
                     // cost of current child less than the cost of same child in open list
-                    if(graph_->template get_node_property(neighboring_node, common::cost_tag{}) >
-                            current_node_cost + 1)
+                    if(graph_->template get_node_property(neighboring_node, common::g_cost_tag{}) >
+                            current_node_g_cost)
                     {
-                        graph_->template update_node_property(neighboring_node, common::cost_tag{},
-                                current_node_cost + 1);
+                        // compute heuristic value
+                        const auto heuristic_value = sqrt(pow((goal.row_index_ - neighboring_node.row_index_),2) +
+                                                          goal.column_index_- pow((neighboring_node.column_index_),2));
+
+                        graph_->template update_node_property(neighboring_node, common::g_cost_tag{},
+                                                              current_node_g_cost + 1);
+                        graph_->template update_node_property(neighboring_node, common::g_cost_tag{},
+                                                              current_node_g_cost + 1 + heuristic_value);
+
                         // replace the parent as current and cost with current cost
                         parent_from_node[neighboring_node] = current_node;
                     }
                 }
             }
         });
-
-        // Add the current node to the closed set
-        closed_set.insert(current_node);
     }
 }
 

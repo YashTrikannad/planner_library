@@ -39,7 +39,6 @@ struct NodeIndex2d
     size_t value_;
     size_t row_index_;
     size_t column_index_;
-    size_t node_traversal_cost_;
 };
 
 inline bool operator==(const NodeIndex2d& lhs, const NodeIndex2d& rhs)
@@ -111,9 +110,30 @@ struct cell_type
     using type = double;
 };
 
+struct cost_type
+{
+    /// f = g + h
+    /// f - Total Cost of the node
+    /// g - Cost from the start node to the current node
+    /// h - Heuristic Cost from current node to the goal
+    double f_;
+    double g_;
+};
+
+
 struct cost_tag
 {
+    using type = cost_type;
+};
+
+struct f_cost_tag
+{
     using type = double;
+};
+
+struct g_cost_tag
+{
+    using type = double ;
 };
 
 } // namespace pl::common
