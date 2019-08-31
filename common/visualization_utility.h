@@ -41,8 +41,26 @@ void display(const Graph& graph)
     waitKey(0);
 }
 
-template <typename Graph, typename Path>
+template <typename Graph, typename Path, typename = std::enable_if_t <!std::is_same<Eigen::MatrixXd, Graph>::value>>
 void display(Graph& graph, const Path& path)
+{
+    cv::Mat image(graph.size(), graph.at(0).size(), CV_64FC1);
+
+    for(const auto& node:path)
+    {
+        graph[node.row_index_][node.column_index_] = 255;
+    }
+
+    for(int i=0; i<graph.size(); ++i)
+        for(int j=0; j<graph.at(0).size(); ++j)
+            image.at<double>(i, j) = graph.at(i).at(j);
+
+    cv::imshow( "Current ContainerType", image );
+    cv::waitKey(0);
+}
+
+template <typename Path>
+void display(Eigen::MatrixXd& graph, const Path& path)
 {
     using namespace cv;
     Mat image;

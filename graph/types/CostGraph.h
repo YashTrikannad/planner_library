@@ -15,7 +15,13 @@ public:
     using graph_type = Graph;
     using node_type = pl::common::NodeIndex2d;
 
+    template <typename = std::enable_if_t <!std::is_same<Eigen::MatrixXd, Graph>::value>>
     cost_graph(const graph_type& graph) : Wrapper<Graph>(graph),
+                                          cost_graph_(std::vector<std::vector<common::cost_type> >(graph.size(),
+                                                                                                   std::vector<common::cost_type>(graph.at(0).size())))
+    {}
+
+    cost_graph(const Eigen::MatrixXd& graph) : Wrapper<Graph>(graph),
                                           cost_graph_(std::vector<std::vector<common::cost_type> >(graph.rows(),
                                                   std::vector<common::cost_type>(graph.cols())))
     {}
