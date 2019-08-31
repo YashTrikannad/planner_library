@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/test_map_generation.dir/test_map_generator.cpp.o  -o test_map_generation 

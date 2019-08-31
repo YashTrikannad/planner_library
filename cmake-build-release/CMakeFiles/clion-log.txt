@@ -1,7 +1,0 @@
-/snap/clion/81/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" /home/yash/CLionProjects/planning_library
--- Boost version: 1.65.1
--- Found the following Boost libraries:
---   program_options
--- Configuring done
--- Generating done
--- Build files have been written to: /home/yash/CLionProjects/planning_library/cmake-build-release
