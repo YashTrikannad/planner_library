@@ -37,8 +37,8 @@ struct NodeIndex2d
     }
 
     size_t value_;
-    size_t row_index_;
-    size_t column_index_;
+    int row_index_;
+    int column_index_;
 };
 
 inline bool operator==(const NodeIndex2d& lhs, const NodeIndex2d& rhs)

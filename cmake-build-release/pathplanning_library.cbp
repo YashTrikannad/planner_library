@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="pathplanning_library"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\usr\lib\cmake\;CMake Files\..\..\..\..\usr\lib\cmake\eigen3\;CMake Files\..\..\..\..\usr\share\;CMake Files\..\..\..\..\usr\share\OpenCV\;CMake Files\common\;CMake Files\graph\;CMake Files\graph\types\;CMake Files\graph\types\tests\;CMake Files\map_generation\;CMake Files\map_generation\tests\;CMake Files\deterministic_planners\;CMake Files\deterministic_planners\bfs\;CMake Files\deterministic_planners\bfs\tests\;CMake Files\deterministic_planners\dfs\;CMake Files\deterministic_planners\dfs\example\;CMake Files\deterministic_planners\astar\;CMake Files\deterministic_planners\astar\example\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="eigen_graph_test">
+				<Option output="/home/yash/CLionProjects/planning_library/cmake-build-release/graph/types/tests/eigen_graph_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release/graph/types/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/include/opencv"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/graph"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/graph/types/tests/Makefile&quot;  VERBOSE=1 eigen_graph_test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/graph/types/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/graph/types/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/graph/types/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="eigen_graph_test/fast">
+				<Option output="/home/yash/CLionProjects/planning_library/cmake-build-release/graph/types/tests/eigen_graph_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release/graph/types/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/include/opencv"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/graph"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/graph/types/tests/Makefile&quot;  VERBOSE=1 eigen_graph_test/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/graph/types/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/graph/types/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/graph/types/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_map_generation">
+				<Option output="/home/yash/CLionProjects/planning_library/cmake-build-release/map_generation/tests/test_map_generation" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release/map_generation/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/include/opencv"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/map_generation"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/common"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/map_generation/tests/Makefile&quot;  VERBOSE=1 test_map_generation"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/map_generation/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/map_generation/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/map_generation/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_map_generation/fast">
+				<Option output="/home/yash/CLionProjects/planning_library/cmake-build-release/map_generation/tests/test_map_generation" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release/map_generation/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/include/opencv"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/map_generation"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/common"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/map_generation/tests/Makefile&quot;  VERBOSE=1 test_map_generation/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/map_generation/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/map_generation/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/map_generation/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_bfs">
+				<Option output="/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/bfs/tests/test_bfs" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/bfs/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/map_generation"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/common"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/deterministic_planners/bfs"/>
+					<Add directory="/usr/include/opencv"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/bfs/tests/Makefile&quot;  VERBOSE=1 test_bfs"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/bfs/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/bfs/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/bfs/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_bfs/fast">
+				<Option output="/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/bfs/tests/test_bfs" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/bfs/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/map_generation"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/common"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/deterministic_planners/bfs"/>
+					<Add directory="/usr/include/opencv"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/bfs/tests/Makefile&quot;  VERBOSE=1 test_bfs/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/bfs/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/bfs/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/bfs/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_dfs">
+				<Option output="/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/dfs/example/test_dfs" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/dfs/example"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/map_generation"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/common"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/deterministic_planners/dfs"/>
+					<Add directory="/usr/include/opencv"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/dfs/example/Makefile&quot;  VERBOSE=1 test_dfs"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/dfs/example/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/dfs/example/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/dfs/example/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_dfs/fast">
+				<Option output="/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/dfs/example/test_dfs" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/dfs/example"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/map_generation"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/common"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/deterministic_planners/dfs"/>
+					<Add directory="/usr/include/opencv"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/dfs/example/Makefile&quot;  VERBOSE=1 test_dfs/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/dfs/example/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/dfs/example/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/dfs/example/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="astar_example">
+				<Option output="/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/astar/example/astar_example" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/astar/example"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/map_generation"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/common"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/deterministic_planners/dfs"/>
+					<Add directory="/usr/include/opencv"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/astar/example/Makefile&quot;  VERBOSE=1 astar_example"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/astar/example/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/astar/example/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/astar/example/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="astar_example/fast">
+				<Option output="/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/astar/example/astar_example" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/astar/example"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/map_generation"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/common"/>
+					<Add directory="/home/yash/CLionProjects/planning_library/deterministic_planners/dfs"/>
+					<Add directory="/usr/include/opencv"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/astar/example/Makefile&quot;  VERBOSE=1 astar_example/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/astar/example/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/astar/example/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yash/CLionProjects/planning_library/cmake-build-release/deterministic_planners/astar/example/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/yash/CLionProjects/planning_library/common/data_types.h">
+			<Option target="test_map_generation"/>
+			<Option target="test_bfs"/>
+			<Option target="test_dfs"/>
+			<Option target="astar_example"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/common/utility.h">
+			<Option target="test_map_generation"/>
+			<Option target="test_bfs"/>
+			<Option target="test_dfs"/>
+			<Option target="astar_example"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/common/visualization_utility.h">
+			<Option target="test_map_generation"/>
+			<Option target="test_bfs"/>
+			<Option target="test_dfs"/>
+			<Option target="astar_example"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/astar/example/astar_example.cpp">
+			<Option target="astar_example"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/bfs/bfs.h">
+			<Option target="test_bfs"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/bfs/bfs_impl.h">
+			<Option target="test_bfs"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/bfs/tests/bfs_test.cpp">
+			<Option target="test_bfs"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/dfs/dfs.h">
+			<Option target="test_dfs"/>
+			<Option target="astar_example"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/dfs/dfs_impl.h">
+			<Option target="test_dfs"/>
+			<Option target="astar_example"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/dfs/example/dfs_example.cpp">
+			<Option target="test_dfs"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/graph/pfl_graph.h">
+			<Option target="eigen_graph_test"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/graph/types/tests/eigen_graph_test.cpp">
+			<Option target="eigen_graph_test"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/map_generation/convert.h">
+			<Option target="test_map_generation"/>
+			<Option target="test_bfs"/>
+			<Option target="test_dfs"/>
+			<Option target="astar_example"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/map_generation/random2d_map_generator.h">
+			<Option target="test_map_generation"/>
+			<Option target="test_bfs"/>
+			<Option target="test_dfs"/>
+			<Option target="astar_example"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/map_generation/random2d_map_generator_impl.h">
+			<Option target="test_map_generation"/>
+			<Option target="test_bfs"/>
+			<Option target="test_dfs"/>
+			<Option target="astar_example"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/map_generation/tests/test_map_generator.cpp">
+			<Option target="test_map_generation"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/../../../../usr/lib/cmake/eigen3/Eigen3Config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\eigen3\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/../../../../usr/lib/cmake/eigen3/Eigen3ConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\eigen3\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/../../../../usr/lib/cmake/eigen3/Eigen3Targets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\eigen3\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/../../../../usr/share/OpenCV/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/../../../../usr/share/OpenCV/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/../../../../usr/share/OpenCV/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/../../../../usr/share/OpenCV/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/common/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\common\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/graph/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\graph\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/graph/types/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\graph\types\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/graph/types/tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\graph\types\tests\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/map_generation/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\map_generation\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/map_generation/tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\map_generation\tests\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\deterministic_planners\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/bfs/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\deterministic_planners\bfs\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/bfs/tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\deterministic_planners\bfs\tests\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/dfs/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\deterministic_planners\dfs\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/dfs/example/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\deterministic_planners\dfs\example\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/astar/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\deterministic_planners\astar\"/>
+		</Unit>
+		<Unit filename="/home/yash/CLionProjects/planning_library/deterministic_planners/astar/example/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\deterministic_planners\astar\example\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

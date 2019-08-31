@@ -5,5 +5,5 @@ target_include_directories(astar INTERFACE
         "${PROJECT_SOURCE_DIR}/deterministic_planners/astar"
         )
 
-target_link_libraries(astar INTERFACE map_generation common)
+target_link_libraries(astar INTERFACE map_generation common -lpthread -lm)
 add_subdirectory(example)

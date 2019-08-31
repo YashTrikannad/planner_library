@@ -93,14 +93,14 @@ private:
 
 /// Wrapper Class with added layer of costs required by heuristic algorithms
 template <template<class> class Wrapper, typename Graph >
-class eigen_cost_graph : public Wrapper<Graph>
+class cost_graph : public Wrapper<Graph>
 {
 public:
     using graph_type = Graph;
     using node_type = pl::common::NodeIndex2d;
 
-    eigen_cost_graph(const graph_type& graph) : Wrapper<Graph>(graph),
-            cost_graph_(std::vector<std::vector<common::cost_type> >(graph.rows(),
+    cost_graph(const graph_type& graph) : Wrapper<Graph>(graph),
+                                          cost_graph_(std::vector<std::vector<common::cost_type> >(graph.rows(),
             std::vector<common::cost_type>(graph.cols())))
     {}
 

@@ -4,7 +4,7 @@ project(pathplanning_library)
 set(CMAKE_CXX_STANDARD 17)
 
 find_package(Eigen3 REQUIRED)
-FIND_PACKAGE( Boost 1.65 COMPONENTS program_options REQUIRED )
+FIND_PACKAGE(Boost 1.65 COMPONENTS program_options REQUIRED )
 find_package(OpenCV REQUIRED )
 
 include_directories(${EIGEN3_INCLUDE_DIR})

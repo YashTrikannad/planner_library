@@ -5,10 +5,13 @@
 
 #pragma once
 
+#define BOOST_LOG_DYN_LINK 1
+
 #include "visualization_utility.h"
 #include "data_types.h"
 #include "utility.h"
 
+#include <boost/log/trivial.hpp>
 #include <iostream>
 #include <queue>
 #include <unordered_map>
@@ -24,7 +27,8 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
     if(graph_->template get_node_property(start, common::cell_type{}) == 1 ||
        graph_->template get_node_property(goal, common::cell_type{}) == 1)
     {
-        std::__throw_logic_error("Not able to find path. Start and Goal must be in free space. ");
+        BOOST_LOG_TRIVIAL(warning) << "Not able to find path. Start and Goal must be in free space!";
+        return;
     }
 
     std::vector<node_type> path;
@@ -44,7 +48,7 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
     std::unordered_set<node_type> closed_set;
 
     // Node to Parent Map
-    std::unordered_map<node_type , node_type > parent_from_node;
+    std::unordered_map<node_type , node_type> parent_from_node;
 
     // Add the start to the open list
     open_list.push(start);
@@ -86,20 +90,19 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
             // If child in closed list or non traversable, continue
             if(neighboring_node.value_ == 0 && closed_set.find(neighboring_node) == closed_set.end())
             {
+                const auto node_transition_cost = pl::common::get_distance(current_node, neighboring_node);
                 // If child not in open list
                 if(open_list_set.find(neighboring_node) == open_list_set.end())
                 {
-                    const auto node_transition_cost = pl::common::get_distance(current_node, neighboring_node);
                     // Add cost as current_node + 1
                     graph_->template update_node_property(neighboring_node, common::g_cost_tag{},
                             current_node_g_cost + node_transition_cost);
 
                     // compute heuristic value
-                    const auto heuristic_value = std::min(pow((goal.row_index_ - neighboring_node.row_index_),1),
-                                                              goal.column_index_- pow((neighboring_node.column_index_),1));
+                    const auto heuristic_value = pl::common::get_distance(neighboring_node, goal);
 
                     graph_->template update_node_property(neighboring_node, common::f_cost_tag{}, current_node_g_cost +
-                            1 + heuristic_value);
+                            heuristic_value);
 
                     // Add the child to the open list
                     parent_from_node[neighboring_node] = current_node;
@@ -114,7 +117,7 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
                             current_node_g_cost)
                     {
                         graph_->template update_node_property(neighboring_node, common::g_cost_tag{},
-                                                              current_node_g_cost + 1);
+                                                              current_node_g_cost + node_transition_cost);
 
                         // replace the parent as current and cost with current cost
                         parent_from_node[neighboring_node] = current_node;
@@ -123,6 +126,8 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
             }
         });
     }
+
+    BOOST_LOG_TRIVIAL(warning) << "Not able to find path from start to goal!";
 }
 
 } // namespace pl::algorithms

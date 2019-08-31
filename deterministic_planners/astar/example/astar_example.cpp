@@ -22,10 +22,10 @@ int main()
 
     auto EigenMap = pl::convert::convert_2dvector_to_eigen(map);
 
-    auto EigenGraph = pl::graph::eigen_cost_graph<pl::graph::eigen_graph, Eigen::MatrixXd>{EigenMap};
+    auto EigenGraph = pl::graph::cost_graph<pl::graph::eigen_graph, Eigen::MatrixXd>{EigenMap};
 
     // Set Up Planner
-    pl::algorithms::astar<pl::graph::eigen_cost_graph<pl::graph::eigen_graph, Eigen::MatrixXd>,
+    pl::algorithms::astar<pl::graph::cost_graph<pl::graph::eigen_graph, Eigen::MatrixXd>,
             std::vector<pl::common::NodeIndex2d>, pl::common::NodeIndex2d>
             eigen_planner(&EigenGraph);
 
