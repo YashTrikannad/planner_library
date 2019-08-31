@@ -15,7 +15,7 @@ int main()
     pl::map::ConstraintMapGenerator<size_t, 0, 1> map_generator;
 
     // Generate a Map
-    map_generator.generate_map(400, 400, 10);
+    map_generator.generate_map(1000, 1000, 20);
 
     // Test GridMaps
     auto map = map_generator.get_map();
@@ -30,7 +30,7 @@ int main()
             eigen_planner(&EigenGraph);
 
     // Find Path
-    eigen_planner.find_path<8>({0, 0}, {300, 300});
+    eigen_planner.find_path<8>({0, 0}, {750, 500});
 
     // Get Path
     const auto eigen_path = eigen_planner.get_path();

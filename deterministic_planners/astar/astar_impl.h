@@ -5,9 +5,10 @@
 
 #pragma once
 
-#include "../../common/visualization_utility.h"
+#include "visualization_utility.h"
+#include "data_types.h"
+#include "utility.h"
 
-#include <data_types.h>
 #include <iostream>
 #include <queue>
 #include <unordered_map>
@@ -88,8 +89,10 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
                 // If child not in open list
                 if(open_list_set.find(neighboring_node) == open_list_set.end())
                 {
+                    const auto node_transition_cost = pl::common::get_distance(current_node, neighboring_node);
                     // Add cost as current_node + 1
-                    graph_->template update_node_property(neighboring_node, common::g_cost_tag{}, current_node_g_cost + 1);
+                    graph_->template update_node_property(neighboring_node, common::g_cost_tag{},
+                            current_node_g_cost + node_transition_cost);
 
                     // compute heuristic value
                     const auto heuristic_value = std::min(pow((goal.row_index_ - neighboring_node.row_index_),1),
