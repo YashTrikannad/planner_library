@@ -14,12 +14,13 @@ namespace pl::graph
 
 
 /// Specialization of Graph for Eigen Matrix
-template<typename ContainerType, typename DataType, typename std::enable_if<std::is_same<ContainerType, Eigen::MatrixXd>::value, int>::type = 0>
+template<typename ContainerType, typename DataType = typename ContainerType::Scalar, typename std::enable_if<std::is_same<ContainerType, Eigen::MatrixXd>::value, int>::type = 0>
 class graph
 {
 public:
     using container_type = ContainerType;
     using data_type = typename container_type::Scalar;
+    using graph_type = graph<container_type, data_type>;
     using node_type = pl::common::NodeIndex2d;
 
     graph(const container_type &graph): container_(graph), rows_(graph.rows()), cols_(graph.cols())

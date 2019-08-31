@@ -22,10 +22,6 @@ public:
     using node_type = typename Graph::node_type;
 
 
-    pfl_graph(const graph_type &graph) : graph_(graph)
-    {}
-
-
     /// Func is applied to each adjacent node of the current node
     /// @tparam Func
     template<typename Func>
@@ -38,20 +34,12 @@ public:
     void for_each_node() const = delete;
 
 
-    /// Get the node count in the graph
-    /// @return
-    size_t get_node_count() const
-    {
-        std::size_t count = 0;
-        graph_.template for_each_node([&]() {
-            count++;
-        });
-        return count;
-    }
-
-
-private:
-    graph_type graph_;
+    /// @tparam Tag - Property tag required by the user
+    /// @param node - queried node
+    /// @param tag - property tag for dispatching
+    /// @return value of the property inquired for the node
+    template<typename Tag>
+    typename Tag::type get_node_property(const node_type &node, Tag&& tag) const = delete;
 };
 
 
