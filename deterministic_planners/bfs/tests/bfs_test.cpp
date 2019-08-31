@@ -6,6 +6,7 @@
 #include "random2d_map_generator.h"
 #include "data_types.h"
 #include "../../../map_generation/convert.h"
+#include "../../../graph/types/CostGraph.h"
 #include "../../../graph/types/EigenGraph.h"
 
 int main()
