@@ -37,7 +37,7 @@ void display(const Graph& graph)
     using namespace cv;
     Mat image;
     eigen2cv(graph, image);
-    imshow( "Current Graph", image );
+    imshow( "Current ContainerType", image );
     waitKey(0);
 }
 
@@ -53,7 +53,7 @@ void display(Graph& graph, const Path& path)
 
     eigen2cv(graph, image);
 
-    imshow( "Current Graph", image );
+    imshow( "Current ContainerType", image );
     waitKey(0);
 }
 
@@ -67,7 +67,7 @@ void display(std::vector<std::vector<common::cost_type>> cost_vector)
         for(int j=0; j<image.cols; ++j)
             image.at<double>(i, j) = cost_vector.at(i).at(j).f_;
 
-    imshow( "Current Graph", image );
+    imshow( "Current ContainerType", image );
     waitKey(0);
 }
 

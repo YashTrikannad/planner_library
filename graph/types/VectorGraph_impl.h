@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "EigenGraph.h"
+#include "VectorGraph.h"
 #include "../pfl_graph.h"
 #include "../../common/data_types.h"
 
@@ -13,9 +13,9 @@
 namespace pl::graph
 {
 
-template <typename Graph>
+template <typename ContainerType>
 template<size_t N, typename Func>
-void eigen_graph<Graph>::for_each_adjacent_node(const node_type &node, Func &&func) const
+void vector_graph<ContainerType>::for_each_adjacent_node(const node_type &node, Func &&func) const
 {
     if constexpr (N == 4)
     {
@@ -40,18 +40,18 @@ void eigen_graph<Graph>::for_each_adjacent_node(const node_type &node, Func &&fu
 }
 
 
-template<typename Graph>
+template<typename ContainerType>
 template <typename Direction>
-typename eigen_graph<Graph>::node_type eigen_graph<Graph>::get_adjacent_node(const node_type& node, Direction direction) const
+typename vector_graph<ContainerType>::node_type vector_graph<ContainerType>::get_adjacent_node(const node_type& node, Direction direction) const
 {
     return {node.row_index_ + Direction::change_rows, node.column_index_ + Direction::change_cols, static_cast<size_t>(
-            container_(node.row_index_ + Direction::change_rows, node.column_index_ + Direction::change_cols))};
+            container_[node.row_index_ + Direction::change_rows][node.column_index_ + Direction::change_cols])};
 }
 
 
-template<typename Graph>
+template<typename ContainerType>
 template <typename Direction>
-std::optional<typename eigen_graph<Graph>::node_type> eigen_graph<Graph>::get_adjacent_node_with_check(const node_type& node, Direction direction) const
+std::optional<typename vector_graph<ContainerType>::node_type> vector_graph<ContainerType>::get_adjacent_node_with_check(const node_type& node, Direction direction) const
 {
     if constexpr (std::is_same<Direction, common::up>{})
     {
@@ -101,7 +101,7 @@ std::optional<typename eigen_graph<Graph>::node_type> eigen_graph<Graph>::get_ad
 
 
 template <typename Graph>
-auto eigen_graph<Graph>::get_4_neighbor(const node_type& node) const
+auto vector_graph<Graph>::get_4_neighbor(const node_type& node) const
 {
     if(node.row_index_ != 0 && node.row_index_ != rows_-1 && node.column_index_ != 0 && node.column_index_!= cols_-1)
     {
@@ -125,15 +125,15 @@ auto eigen_graph<Graph>::get_4_neighbor(const node_type& node) const
 
 
 template <typename Graph>
-auto eigen_graph<Graph>::get_8_neighbor(const node_type& node) const
+auto vector_graph<Graph>::get_8_neighbor(const node_type& node) const
 {
     std::vector<pl::common::NodeIndex2d> neighbors = get_4_neighbor(node);
     if(node.row_index_ != 0 && node.row_index_ != rows_-1 && node.column_index_ != 0 && node.column_index_!= cols_-1)
     {
         neighbors.insert(neighbors.end(), {get_adjacent_node(node, common::top_right{}),
-                                      get_adjacent_node(node, common::top_left{}),
-                                      get_adjacent_node(node, common::bottom_right{}),
-                                      get_adjacent_node(node, common::bottom_left{})});
+                                           get_adjacent_node(node, common::top_left{}),
+                                           get_adjacent_node(node, common::bottom_right{}),
+                                           get_adjacent_node(node, common::bottom_left{})});
         return neighbors;
     }
     else

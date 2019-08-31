@@ -1,2 +1,5 @@
 add_executable(eigen_graph_test eigen_graph_test.cpp)
 target_link_libraries(eigen_graph_test graph)
+
+add_executable(vector_graph_example vector_graph_example.cpp)
+target_link_libraries(vector_graph_example graph)

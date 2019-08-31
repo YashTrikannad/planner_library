@@ -14,15 +14,15 @@ namespace pl::graph
 
 
 /// Base Class with graph type as Eigen Matrix
-template<typename Graph>
+template<typename ContainerType>
 class eigen_graph
 {
 public:
-    using graph_type = Graph;
-    using data_type = typename Graph::Scalar;
+    using container_type = ContainerType;
+    using data_type = typename container_type::Scalar;
     using node_type = pl::common::NodeIndex2d;
 
-    eigen_graph(const graph_type &graph): graph_(graph), rows_(graph.rows()), cols_(graph.cols())
+    eigen_graph(const container_type &graph): container_(graph), rows_(graph.rows()), cols_(graph.cols())
     {
     }
 
@@ -35,7 +35,7 @@ public:
     template<typename Tag, std::enable_if_t<std::is_same<Tag, pl::common::cell_type>::value, int> = 0>
     typename Tag::type get_node_property(const node_type &node, Tag&& tag) const
     {
-        if constexpr (std::is_same<Tag, common::cell_type>{}) return graph_(node.row_index_, node.column_index_);
+        if constexpr (std::is_same<Tag, common::cell_type>{}) return container_(node.row_index_, node.column_index_);
         static_assert(" The given property is not supported by this graph currently ");
     }
 
@@ -48,14 +48,14 @@ public:
         {
             for(size_t row=0; row < rows_; row++)
             {
-                func(pl::common::NodeIndex2d{row, col, graph_(cols_, rows_)});
+                func(pl::common::NodeIndex2d{row, col, container_(cols_, rows_)});
             }
         }
     }
 
 
 private:
-    graph_type graph_;
+    container_type container_;
     size_t rows_;
     size_t cols_;
 
