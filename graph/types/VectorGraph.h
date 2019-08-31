@@ -13,18 +13,18 @@ namespace pl::graph
 {
 
 
-/// Base Class with graph type as Eigen Matrix
-template<typename ContainerType>
-class vector_graph
+/// Specialization of Graph for Vector of Vectors
+template<typename ContainerType, typename DataType, typename std::enable_if<std::is_same<ContainerType, std::vector<std::vector<DataType>>>::value, int>::type = 0>
+class graph
 {
 public:
     using container_type = ContainerType;
     using data_type = typename container_type::value_type;
     using node_type = pl::common::NodeIndex2d;
 
-    vector_graph(const container_type &container) : container_(container),
-                                                    rows_(container.size()),
-                                                    cols_(container.at(0).size())
+    graph(const container_type &container) : container_(container),
+                                             rows_(container.size()),
+                                             cols_(container.at(0).size())
     {
     }
 

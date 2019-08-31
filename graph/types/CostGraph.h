@@ -8,21 +8,21 @@ namespace pl::graph
 {
 
 /// Wrapper Class with added layer of costs required by heuristic algorithms
-template <template<class> class Wrapper, typename Graph>
-class cost_graph : public Wrapper<Graph>
+template <template<class, class> class Graph, typename ContainerType, typename DataType>
+class cost_graph : public Graph<ContainerType, DataType>
 {
 public:
-    using graph_type = Graph;
+    using container_type = ContainerType;
     using node_type = pl::common::NodeIndex2d;
 
-    template <typename = std::enable_if_t <!std::is_same<Eigen::MatrixXd, Graph>::value>>
-    cost_graph(const graph_type& graph) : Wrapper<Graph>(graph),
-                                          cost_graph_(std::vector<std::vector<common::cost_type> >(graph.size(),
+    template <typename T>
+    cost_graph(const std::vector<std::vector<T>>& graph) : Graph<ContainerType, DataType>(graph),
+                                              cost_graph_(std::vector<std::vector<common::cost_type> >(graph.size(),
                                                                                                    std::vector<common::cost_type>(graph.at(0).size())))
     {}
 
-    cost_graph(const Eigen::MatrixXd& graph) : Wrapper<Graph>(graph),
-                                          cost_graph_(std::vector<std::vector<common::cost_type> >(graph.rows(),
+    cost_graph(const Eigen::MatrixXd& graph) : Graph<ContainerType, DataType>(graph),
+                                               cost_graph_(std::vector<std::vector<common::cost_type> >(graph.rows(),
                                                   std::vector<common::cost_type>(graph.cols())))
     {}
 
@@ -68,7 +68,7 @@ public:
         return cost_graph_;
     }
 
-    using  Wrapper<Graph>::get_node_property;
+    using  Graph<ContainerType, DataType>::get_node_property;
 
 private:
     std::vector<std::vector<common::cost_type>> cost_graph_;

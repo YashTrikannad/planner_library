@@ -5,7 +5,7 @@
 #include "bfs.h"
 #include "random2d_map_generator.h"
 #include "data_types.h"
-#include "../../../map_generation/convert.h"
+#include "../../../common/utility.h"
 #include "../../../graph/types/CostGraph.h"
 #include "../../../graph/types/EigenGraph.h"
 
@@ -20,12 +20,12 @@ int main()
     // Test GridMaps
     const auto map = map_generator.get_map();
 
-    auto EigenMap = pl::convert::convert_2dvector_to_eigen(map);
+    auto EigenMap = pl::common::convert_2dvector_to_eigen(map);
 
-    const auto EigenGraph = pl::graph::cost_graph<pl::graph::eigen_graph, Eigen::MatrixXd>{EigenMap};
+    const auto EigenGraph = pl::graph::cost_graph<pl::graph::graph, Eigen::MatrixXd, double>{EigenMap};
     // Set Up Planner
     pl::algorithms::bfs<std::vector<std::vector<size_t>>, std::vector<size_t>, size_t> vector_planner(&map);
-    pl::algorithms::bfs<pl::graph::cost_graph<pl::graph::eigen_graph, Eigen::MatrixXd>,
+    pl::algorithms::bfs<pl::graph::cost_graph<pl::graph::graph, Eigen::MatrixXd, double>,
             std::vector<pl::common::NodeIndex2d>, pl::common::NodeIndex2d>
             eigen_planner(&EigenGraph);
 
