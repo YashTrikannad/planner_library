@@ -36,7 +36,10 @@ int main()
     // Test Check
     if(eigen_path)
     {
-        pl::common::display(map, *eigen_path);
+        // Get Explored Nodes for debug information
+        const auto explored_nodes = eigen_planner.get_closed_set();
+
+        pl::common::display_debug(map, *eigen_path, explored_nodes);
     }
     else
     {

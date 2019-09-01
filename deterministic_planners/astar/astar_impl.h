@@ -79,6 +79,13 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
             }
             path.emplace_back(start);
             path_ = std::move(path);
+
+            if constexpr (debug::debug)
+            {
+                closed_set_ = std::move(closed_set);
+            }
+
+            BOOST_LOG_TRIVIAL(info) << "Path Found!";
             return;
         }
 
