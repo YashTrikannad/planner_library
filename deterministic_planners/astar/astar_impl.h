@@ -27,7 +27,7 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
     if(graph_->template get_node_property(start, common::cell_type{}) == 1 ||
        graph_->template get_node_property(goal, common::cell_type{}) == 1)
     {
-        BOOST_LOG_TRIVIAL(warning) << "Not able to find path. Start and Goal must be in free space!";
+//        BOOST_LOG_TRIVIAL(warning) << "Not able to find path. Start and Goal must be in free space!";
         return;
     }
 
@@ -85,7 +85,7 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
                 closed_set_ = std::move(closed_set);
             }
 
-            BOOST_LOG_TRIVIAL(info) << "Path Found!";
+//            BOOST_LOG_TRIVIAL(info) << "Path Found!";
             return;
         }
 
@@ -134,7 +134,7 @@ void astar<MapType, PathType, NodeType>::find_path(const node_type &start, const
         });
     }
 
-    BOOST_LOG_TRIVIAL(warning) << "Not able to find path from start to goal!";
+//    BOOST_LOG_TRIVIAL(info) << "Not able to find path from start to goal!";
 }
 
 } // namespace pl::algorithms

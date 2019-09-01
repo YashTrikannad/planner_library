@@ -41,7 +41,9 @@ public:
 
     std::optional<PathType> get_path() const
     {
-        return path_;
+        if (path_)
+            return path_;
+        return std::nullopt;
     }
 
     constexpr std::unordered_set<node_type> get_closed_set() const
