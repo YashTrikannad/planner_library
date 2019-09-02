@@ -15,10 +15,10 @@ class cost_graph : public Graph<ContainerType, DataType>
 {
 public:
     using container_type = ContainerType;
+    using data_type = DataType;
     using node_type = pl::common::NodeIndex2d;
 
-    template <typename T>
-    cost_graph(const std::vector<std::vector<T>>& graph) : Graph<ContainerType, DataType>(graph),
+    cost_graph(const std::vector<std::vector<data_type>>& graph) : Graph<ContainerType, DataType>(graph),
                                               cost_graph_(std::vector<std::vector<common::cost_type> >(graph.size(),
                                                                                                    std::vector<common::cost_type>(graph.at(0).size())))
     {}
@@ -70,7 +70,7 @@ public:
         return cost_graph_;
     }
 
-    using  Graph<ContainerType, DataType>::get_node_property;
+    using Graph<ContainerType, DataType>::get_node_property;
 
 private:
     std::vector<std::vector<common::cost_type>> cost_graph_;

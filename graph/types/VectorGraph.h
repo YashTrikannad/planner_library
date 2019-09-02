@@ -5,7 +5,7 @@
 #pragma once
 
 #include <vector>
-#include "../pfl_graph.h"
+#include "../graph.h"
 #include "../../common/data_types.h"
 
 
@@ -43,8 +43,7 @@ public:
     template<typename Tag, std::enable_if_t<std::is_same<Tag, pl::common::cell_type>::value, int> = 0>
     typename Tag::type get_node_property(const node_type &node, Tag &&tag) const
     {
-        if constexpr (std::is_same<Tag, common::cell_type>{}) return container_[node.row_index_][node.column_index_];
-        static_assert(" The given property is not supported by this graph currently ");
+        return container_[node.row_index_][node.column_index_];
     }
 
     /// Func is applied to all the nodes in the graph

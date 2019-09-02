@@ -5,7 +5,7 @@
 #pragma once
 
 #include <vector>
-#include "../pfl_graph.h"
+#include "../graph.h"
 #include "../../common/data_types.h"
 
 

@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "../../pfl_graph.h"
+#include "graph.h"
 #include "../VectorGraph.h"
 #include "Eigen/Core"
 

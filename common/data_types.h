@@ -136,6 +136,22 @@ struct g_cost_tag
     using type = double ;
 };
 
+struct distance_type
+{
+};
+
+/// tag for l2 squared distance
+struct l2 : distance_type
+{
+    using type = distance_type;
+};
+
+/// tag for l1 manhattan distance
+struct l1 : distance_type
+{
+    using type = distance_type;
+};
+
 } // namespace pl::common
 
 // Include hash for NodeIndex2d in std namespace
