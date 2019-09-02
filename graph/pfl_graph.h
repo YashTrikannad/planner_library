@@ -14,12 +14,12 @@ namespace pl::graph
 
 /// pfl_graph will be the standard graph used in this library.
 /// @tparam Graph
-template<typename Graph>
-class pfl_graph
+template<typename ContainerType, typename DataType>
+class graph
 {
 public:
-    using graph_type = Graph;
-    using node_type = typename Graph::node_type;
+    using graph_type = ContainerType;
+    using node_type = typename ContainerType::node_type;
 
 
     /// Func is applied to each adjacent node of the current node

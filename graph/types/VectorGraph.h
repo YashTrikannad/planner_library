@@ -14,17 +14,23 @@ namespace pl::graph
 
 
 /// Specialization of Graph for Vector of Vectors
-template<typename ContainerType, typename DataType, typename std::enable_if<std::is_same<ContainerType, std::vector<std::vector<DataType>>>::value, int>::type = 0>
-class graph
+template<typename DataType>
+class graph<std::vector<std::vector<DataType>>, DataType>
 {
 public:
-    using container_type = ContainerType;
-    using data_type = typename container_type::value_type;
+    using container_type = std::vector<std::vector<DataType>>;
+    using data_type = DataType;
     using node_type = pl::common::NodeIndex2d;
 
-    graph(const container_type &container) : container_(container),
-                                             rows_(container.size()),
-                                             cols_(container.at(0).size())
+    graph(const std::vector<std::vector<data_type>> &container) : container_(container),
+                                             rows_(container_.size()),
+                                             cols_(container_.at(0).size())
+    {
+    }
+
+    graph(std::vector<std::vector<data_type >> &&container) : container_(std::move(container)),
+                                             rows_(container_.size()),
+                                             cols_(container_.at(0).size())
     {
     }
 
