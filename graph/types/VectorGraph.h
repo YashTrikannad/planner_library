@@ -40,7 +40,13 @@ public:
     void for_each_adjacent_node(const node_type &node, Func &&func) const;
 
 
-    /// Get the node property of the queried node of the given tag type
+    /// Func is applied to each adjacent node of the current node
+    /// @tparam Func
+    template<size_t N, typename Func>
+    void for_each_adjacent_node_and_direction(const node_type &node, Func &&func) const;
+
+
+    /// Get the cell type (Obstacle/ Free Space) of the current node
     /// @tparam Tag
     /// @param node
     /// @param tag
@@ -51,6 +57,16 @@ public:
         return container_[node.row_index_][node.column_index_];
     }
 
+    /// Use this function if you only need the next node in a particular direction
+    /// @tparam Direction
+    /// @param node
+    /// @param direction
+    /// @return adjacent node in the given direction
+    template<typename Direction>
+    std::optional<node_type> get_adjacent_node(const node_type &node, Direction direction) const
+    {
+        return get_adjacent_node_with_check_(node, direction);
+    }
 
     /// Func is applied to all the nodes in the graph
     /// @tparam Func
@@ -81,7 +97,7 @@ private:
     /// @param direction
     /// @return adjacent nodes corresponding to the direction
     template<typename Direction>
-    node_type get_adjacent_node(const node_type &node, Direction direction) const;
+    node_type get_adjacent_node_(const node_type &node, Direction direction) const;
 
 
     ///
@@ -91,7 +107,7 @@ private:
     /// @param direction - direction of adjacent node
     /// @return adjacent node if present else null_opt
     template<typename Direction>
-    std::optional<node_type> get_adjacent_node_with_check(const node_type &node, Direction direction) const;
+    std::optional<node_type> get_adjacent_node_with_check_(const node_type &node, Direction direction) const;
 };
 
 }

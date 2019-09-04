@@ -42,7 +42,7 @@ void graph<Eigen::Matrix<DataType, Eigen::Dynamic, Eigen::Dynamic>, DataType>::f
 
 template<typename DataType>
 template <typename Direction>
-typename graph<Eigen::Matrix<DataType, Eigen::Dynamic, Eigen::Dynamic>, DataType>::node_type graph<Eigen::Matrix<DataType, Eigen::Dynamic, Eigen::Dynamic> ,DataType>::get_adjacent_node(const node_type& node, Direction direction) const
+typename graph<Eigen::Matrix<DataType, Eigen::Dynamic, Eigen::Dynamic>, DataType>::node_type graph<Eigen::Matrix<DataType, Eigen::Dynamic, Eigen::Dynamic> ,DataType>::get_adjacent_node_(const node_type& node, Direction direction) const
 {
     return {node.row_index_ + Direction::change_rows, node.column_index_ + Direction::change_cols, static_cast<size_t>(
             container_(node.row_index_ + Direction::change_rows, node.column_index_ + Direction::change_cols))};
@@ -51,46 +51,46 @@ typename graph<Eigen::Matrix<DataType, Eigen::Dynamic, Eigen::Dynamic>, DataType
 
 template<typename DataType>
 template <typename Direction>
-std::optional<typename graph<Eigen::Matrix<DataType, Eigen::Dynamic, Eigen::Dynamic>, DataType>::node_type> graph<Eigen::Matrix<DataType, Eigen::Dynamic, Eigen::Dynamic>, DataType>::get_adjacent_node_with_check(const node_type& node, Direction direction) const
+std::optional<typename graph<Eigen::Matrix<DataType, Eigen::Dynamic, Eigen::Dynamic>, DataType>::node_type> graph<Eigen::Matrix<DataType, Eigen::Dynamic, Eigen::Dynamic>, DataType>::get_adjacent_node_with_check_(const node_type& node, Direction direction) const
 {
     if constexpr (std::is_same<Direction, common::up>{})
     {
-        if(node.row_index_ != 0) return get_adjacent_node(node, direction);
+        if(node.row_index_ != 0) return get_adjacent_node_(node, direction);
         return std::nullopt;
     }
     else if (std::is_same<Direction, common::down>{})
     {
-        if(node.row_index_ != rows_-1) return get_adjacent_node(node, direction);
+        if(node.row_index_ != rows_-1) return get_adjacent_node_(node, direction);
         return std::nullopt;
     }
     else if (std::is_same<Direction, common::left>{})
     {
-        if(node.column_index_ != 0) return get_adjacent_node(node, direction);
+        if(node.column_index_ != 0) return get_adjacent_node_(node, direction);
         return std::nullopt;
     }
     else if (std::is_same<Direction, common::right>{})
     {
-        if(node.column_index_ != cols_-1) return get_adjacent_node(node, direction);
+        if(node.column_index_ != cols_-1) return get_adjacent_node_(node, direction);
         return std::nullopt;
     }
     if constexpr (std::is_same<Direction, common::top_left>{})
     {
-        if(node.row_index_ != 0 && node.column_index_ !=0) return get_adjacent_node(node, direction);
+        if(node.row_index_ != 0 && node.column_index_ !=0) return get_adjacent_node_(node, direction);
         return std::nullopt;
     }
     else if (std::is_same<Direction, common::top_right>{})
     {
-        if(node.row_index_ != 0 && node.column_index_ != cols_-1) return get_adjacent_node(node, direction);
+        if(node.row_index_ != 0 && node.column_index_ != cols_-1) return get_adjacent_node_(node, direction);
         return std::nullopt;
     }
     else if (std::is_same<Direction, common::bottom_left>{})
     {
-        if(node.row_index_!= rows_-1 && node.column_index_ != 0) return get_adjacent_node(node, direction);
+        if(node.row_index_!= rows_-1 && node.column_index_ != 0) return get_adjacent_node_(node, direction);
         return std::nullopt;
     }
     else if (std::is_same<Direction, common::bottom_right>{})
     {
-        if(node.row_index_!= rows_-1 && node.column_index_ != cols_-1) return get_adjacent_node(node, direction);
+        if(node.row_index_!= rows_-1 && node.column_index_ != cols_-1) return get_adjacent_node_(node, direction);
         return std::nullopt;
     }
     else
@@ -105,19 +105,19 @@ auto graph<Eigen::Matrix<DataType, Eigen::Dynamic, Eigen::Dynamic>, DataType>::g
 {
     if(node.row_index_ != 0 && node.row_index_ != rows_-1 && node.column_index_ != 0 && node.column_index_!= cols_-1)
     {
-        return  std::vector<pl::common::NodeIndex2d>{get_adjacent_node(node, common::up{}),
-                                                     get_adjacent_node(node, common::down{}),
-                                                     get_adjacent_node(node, common::left{}),
-                                                     get_adjacent_node(node, common::right{})};
+        return  std::vector<pl::common::NodeIndex2d>{get_adjacent_node_(node, common::up{}),
+                                                     get_adjacent_node_(node, common::down{}),
+                                                     get_adjacent_node_(node, common::left{}),
+                                                     get_adjacent_node_(node, common::right{})};
 
     }
     else
     {
         std::vector<pl::common::NodeIndex2d> neighbors{};
-        if(const auto node_maybe = get_adjacent_node_with_check(node, common::up{}); node_maybe) neighbors.emplace_back(*node_maybe);
-        if(const auto node_maybe = get_adjacent_node_with_check(node, common::down{}); node_maybe) neighbors.emplace_back(*node_maybe);
-        if(const auto node_maybe = get_adjacent_node_with_check(node, common::left{}); node_maybe) neighbors.emplace_back(*node_maybe);
-        if(const auto node_maybe = get_adjacent_node_with_check(node, common::right{}); node_maybe) neighbors.emplace_back(*node_maybe);
+        if(const auto node_maybe = get_adjacent_node_with_check_(node, common::up{}); node_maybe) neighbors.emplace_back(*node_maybe);
+        if(const auto node_maybe = get_adjacent_node_with_check_(node, common::down{}); node_maybe) neighbors.emplace_back(*node_maybe);
+        if(const auto node_maybe = get_adjacent_node_with_check_(node, common::left{}); node_maybe) neighbors.emplace_back(*node_maybe);
+        if(const auto node_maybe = get_adjacent_node_with_check_(node, common::right{}); node_maybe) neighbors.emplace_back(*node_maybe);
         return neighbors;
     }
 }
@@ -130,18 +130,18 @@ auto graph<Eigen::Matrix<DataType, Eigen::Dynamic, Eigen::Dynamic>, DataType>::g
     std::vector<pl::common::NodeIndex2d> neighbors = get_4_neighbor(node);
     if(node.row_index_ != 0 && node.row_index_ != rows_-1 && node.column_index_ != 0 && node.column_index_!= cols_-1)
     {
-        neighbors.insert(neighbors.end(), {get_adjacent_node(node, common::top_right{}),
-                                      get_adjacent_node(node, common::top_left{}),
-                                      get_adjacent_node(node, common::bottom_right{}),
-                                      get_adjacent_node(node, common::bottom_left{})});
+        neighbors.insert(neighbors.end(), {get_adjacent_node_(node, common::top_right{}),
+                                           get_adjacent_node_(node, common::top_left{}),
+                                           get_adjacent_node_(node, common::bottom_right{}),
+                                           get_adjacent_node_(node, common::bottom_left{})});
         return neighbors;
     }
     else
     {
-        if(const auto node_maybe = get_adjacent_node_with_check(node, common::top_right{}); node_maybe) neighbors.emplace_back(*node_maybe);
-        if(const auto node_maybe = get_adjacent_node_with_check(node, common::top_left{}); node_maybe) neighbors.emplace_back(*node_maybe);
-        if(const auto node_maybe = get_adjacent_node_with_check(node, common::bottom_right{}); node_maybe) neighbors.emplace_back(*node_maybe);
-        if(const auto node_maybe = get_adjacent_node_with_check(node, common::bottom_left{}); node_maybe) neighbors.emplace_back(*node_maybe);
+        if(const auto node_maybe = get_adjacent_node_with_check_(node, common::top_right{}); node_maybe) neighbors.emplace_back(*node_maybe);
+        if(const auto node_maybe = get_adjacent_node_with_check_(node, common::top_left{}); node_maybe) neighbors.emplace_back(*node_maybe);
+        if(const auto node_maybe = get_adjacent_node_with_check_(node, common::bottom_right{}); node_maybe) neighbors.emplace_back(*node_maybe);
+        if(const auto node_maybe = get_adjacent_node_with_check_(node, common::bottom_left{}); node_maybe) neighbors.emplace_back(*node_maybe);
         return neighbors;
     }
 }

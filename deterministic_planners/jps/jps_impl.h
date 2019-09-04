@@ -91,6 +91,34 @@ void jps<MapType, PathType, NodeType>::find_path(const node_type &start, const n
 
         const auto current_node_g_cost = graph_->template get_node_property(current_node, common::g_cost_tag{});
 
+        // for each popped node from the open list
+        graph_->template for_each_adjacent_node_and_direction<NumberNeighbors>(current_node, [&](const node_type& next_node, auto direction){
+
+            // Check if the neighboring node is not an obstacle or already present in the closed set
+            if(next_node.value_ == 0 && closed_set.find(next_node) == closed_set.end())
+            {
+                if(open_list_set.find(next_node) == open_list_set.end())
+                {
+                    node_type current = current_node;
+                    // Check if it has no forced neighbor
+                    while (!check_for_forced_neighbors(current_node, direction)) // Also check for boundary conditions
+                    {
+                        current = next_node;
+                    }
+
+                    // update the parent of the new node
+                    parent_from_node[current] = current_node;
+
+                    // Add the node with a forced neighbor to the expansion list
+                    open_list_set.insert(current);
+                    open_list.push(current);
+                }
+            }
+        });
+
+        // Else add it to the open list
+
+
         // Else iterate through all children. Initialized with cost = current
         graph_->template for_each_adjacent_node<NumberNeighbors>(current_node, [&](const node_type& neighboring_node){
 
@@ -137,21 +165,52 @@ void jps<MapType, PathType, NodeType>::find_path(const node_type &start, const n
     BOOST_LOG_TRIVIAL(warning) << "Not able to find path from start to goal!";
 }
 
+
 template<typename MapType, typename PathType, typename NodeType>
-void jps<MapType, PathType, NodeType>::jump(const node_type& previous_node, const node_type& next_node)
+template <typename Direction>
+bool jps<MapType, PathType, NodeType>::check_for_forced_neighbors(const node_type& current_node, Direction direction) const
 {
-    // jump and add nodes to the open set
-    if(!check_for_forced_neighbors())
+    if constexpr (std::is_same<Direction, pl::common::up>::value || std::is_same<Direction, pl::common::down>::value)
     {
-        
+        const auto node1 = graph_->template get_adjacent_node(current_node, common::left{});
+        const auto node2 = graph_->template get_adjacent_node(current_node, common::right{});
+        return (node1 && !node1->value_) || (node2 && !node2->value_);
     }
-}
+    else if constexpr (std::is_same<Direction, pl::common::right>::value || std::is_same<Direction, pl::common::left>::value)
+    {
+        const auto node1 = graph_->template get_adjacent_node(current_node, common::up{});
+        const auto node2 = graph_->template get_adjacent_node(current_node, common::down{});
+        return (node1 && !node1->value_) || (node2 && !node2->value_);
+    }
+    else if constexpr (std::is_same<Direction, pl::common::top_right>::value)
+    {
+        const auto node1 = graph_->template get_adjacent_node(current_node, common::left{});
+        const auto node2 = graph_->template get_adjacent_node(current_node, common::down{});
+        return (node1 && !node1->value_) || (node2 && !node2->value_);
 
-template<typename MapType, typename PathType, typename NodeType>
-bool jps<MapType, PathType, NodeType>::check_for_forced_neighbors(const node_type& current_node) const
-{
-    // check if a current node is a forced neighbor
+    }
+    else if constexpr (std::is_same<Direction, pl::common::bottom_right>::value)
+    {
+        const auto node1 = graph_->template get_adjacent_node(current_node, common::up{});
+        const auto node2 = graph_->template get_adjacent_node(current_node, common::left{});
+        return (node1 && !node1->value_) || (node2 && !node2->value_);
 
+    }
+    else if constexpr (std::is_same<Direction, pl::common::bottom_left>::value)
+    {
+        const auto node1 = graph_->template get_adjacent_node(current_node, common::up{});
+        const auto node2 = graph_->template get_adjacent_node(current_node, common::right{});
+        return (node1 && !node1->value_) || (node2 && !node2->value_);
+
+    }
+    else if constexpr (std::is_same<Direction, pl::common::top_left>::value)
+    {
+        const auto node1 = graph_->template get_adjacent_node(current_node, common::down{});
+        const auto node2 = graph_->template get_adjacent_node(current_node, common::right{});
+        return (node1 && !node1->value_) || (node2 && !node2->value_);
+
+    }
+    static_assert("Wrong Direction input");
 }
 
 } // namespace pl::algorithms

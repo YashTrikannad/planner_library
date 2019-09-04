@@ -11,6 +11,7 @@
 #include <boost/log/trivial.hpp>
 #include <optional>
 #include <unordered_set>
+#include <data_types.h>
 
 namespace pl::algorithms
 {
@@ -61,12 +62,14 @@ private:
     /// Jump and add nodes to the open set
     /// @param current_node
     /// @param next_node
-    void jump(const node_type& current_node, const node_type& next_node);
+    template <typename Direction>
+    void jump(const node_type& current_node, const node_type& next_node, Direction direction);
 
     /// Check if the given node has forced neighbors
     /// @param current_node
     /// @return return true if current node has forced neighbors
-    bool check_for_forced_neighbors(const node_type& current_node) const;
+    template <typename Direction>
+    bool check_for_forced_neighbors(const node_type& current_node, Direction direction) const;
 };
 
 } // namespace pl::algorithms
