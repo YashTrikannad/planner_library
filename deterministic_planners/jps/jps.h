@@ -57,6 +57,16 @@ private:
     GraphType *graph_;
     std::optional<PathType> path_;
     std::optional<std::unordered_set<node_type>> closed_set_;
+
+    /// Jump and add nodes to the open set
+    /// @param current_node
+    /// @param next_node
+    void jump(const node_type& current_node, const node_type& next_node);
+
+    /// Check if the given node has forced neighbors
+    /// @param current_node
+    /// @return return true if current node has forced neighbors
+    bool check_for_forced_neighbors(const node_type& current_node) const;
 };
 
 } // namespace pl::algorithms

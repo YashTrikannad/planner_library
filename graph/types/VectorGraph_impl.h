@@ -14,6 +14,19 @@ namespace pl::graph
 {
 
 template <typename DataType>
+template<typename Func>
+void graph<std::vector<std::vector<DataType>>, DataType>::for_each_node(Func &&func) const
+{
+    for (size_t col = 0; col < cols_; col++)
+    {
+        for (size_t row = 0; row < rows_; row++)
+        {
+            func(pl::common::NodeIndex2d{row, col, container_[cols_][rows_]});
+        }
+    }
+}
+
+template <typename DataType>
 template<size_t N, typename Func>
 void graph<std::vector<std::vector<DataType>>, DataType>::for_each_adjacent_node(const node_type &node, Func &&func) const
 {

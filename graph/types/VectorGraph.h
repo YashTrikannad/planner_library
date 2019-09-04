@@ -40,25 +40,22 @@ public:
     void for_each_adjacent_node(const node_type &node, Func &&func) const;
 
 
+    /// Get the node property of the queried node of the given tag type
+    /// @tparam Tag
+    /// @param node
+    /// @param tag
+    /// @return
     template<typename Tag, std::enable_if_t<std::is_same<Tag, pl::common::cell_type>::value, int> = 0>
     typename Tag::type get_node_property(const node_type &node, Tag &&tag) const
     {
         return container_[node.row_index_][node.column_index_];
     }
 
+
     /// Func is applied to all the nodes in the graph
     /// @tparam Func
     template<typename Func>
-    void for_each_node(Func &&func) const
-    {
-        for (size_t col = 0; col < cols_; col++)
-        {
-            for (size_t row = 0; row < rows_; row++)
-            {
-                func(pl::common::NodeIndex2d{row, col, container_[cols_][rows_]});
-            }
-        }
-    }
+    void for_each_node(Func &&func) const;
 
 
 private:
