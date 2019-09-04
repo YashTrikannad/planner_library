@@ -14,7 +14,7 @@ Future / Ongoing work on:
 3. Potential Fields
 4. Obstacle expansion
 
-![alt text](https://github.com/YashTrikannad/planner_library/blob/master/images/astar.png)
+![alt text](https://github.com/YashTrikannad/planner_library/blob/master/images/astar_debug.png)
 
 
 ![alt text](https://github.com/YashTrikannad/planner_library/blob/master/images/bfs.png)
