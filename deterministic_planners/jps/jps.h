@@ -66,7 +66,9 @@ private:
     node_type goal_;
     GraphType *graph_;
     std::optional<PathType> path_;
-    std::optional<std::unordered_set<node_type>> closed_set_;
+    std::unordered_set<node_type> closed_set_;
+    std::unordered_set<node_type> open_set_;
+    std::unordered_map<node_type , std::pair<node_type, common::search_direction>> parent_from_node_;
 
 
     /// Get search direction from current node to the next node
@@ -97,7 +99,7 @@ private:
     /// Return successor nodes
     /// @param node
     /// @return
-    std::vector<NodeType> identify_successors(const node_type& node, common::search_direction direction) const;
+    void identify_successors(const node_type& node, common::search_direction direction);
 
 
     /// Applies the given func to all pruned_neighbors

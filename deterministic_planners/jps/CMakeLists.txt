@@ -7,3 +7,4 @@ target_include_directories(jps INTERFACE
 
 target_link_libraries(jps INTERFACE map_generation common -lpthread -lm)
 add_subdirectory(example)
+add_subdirectory(tests)
