@@ -51,6 +51,11 @@ inline bool operator!=(const NodeIndex2d& lhs, const NodeIndex2d& rhs)
     return lhs.row_index_ != rhs.row_index_ || lhs.column_index_ != rhs.column_index_;
 }
 
+enum class search_direction
+{
+    top, top_right, right, bottom_right, bottom, bottom_left, left, top_left
+};
+
 // tags used in tag dispatching ( Currently only for 2d )
 struct direction
 {

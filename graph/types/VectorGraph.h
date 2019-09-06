@@ -58,6 +58,8 @@ public:
     void for_each_node(Func &&func) const;
 
 
+    std::optional<node_type> get_adjacent_node(const node_type &node, common::search_direction direction) const;
+
 private:
     container_type container_;
     size_t rows_;
@@ -81,7 +83,7 @@ private:
     /// @param direction
     /// @return adjacent nodes corresponding to the direction
     template<typename Direction>
-    node_type get_adjacent_node(const node_type &node, Direction direction) const;
+    node_type get_adjacent_node_(const node_type &node, Direction direction) const;
 
 
     ///
@@ -91,7 +93,7 @@ private:
     /// @param direction - direction of adjacent node
     /// @return adjacent node if present else null_opt
     template<typename Direction>
-    std::optional<node_type> get_adjacent_node_with_check(const node_type &node, Direction direction) const;
+    std::optional<node_type> get_adjacent_node_with_check_(const node_type &node, Direction direction) const;
 };
 
 }

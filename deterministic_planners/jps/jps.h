@@ -7,6 +7,7 @@
 #define BOOST_LOG_DYN_LINK 1
 
 #include "../algorithms.h"
+#include "data_types.h"
 
 #include <boost/log/trivial.hpp>
 #include <optional>
@@ -14,6 +15,14 @@
 
 namespace pl::algorithms
 {
+
+template <typename NodeType>
+struct jps_node
+{
+    NodeType node_;
+    common::search_direction direction_;
+    bool is_forced_;
+};
 
 namespace debug
 {
@@ -54,19 +63,50 @@ public:
     }
 
 private:
+    node_type goal_;
     GraphType *graph_;
     std::optional<PathType> path_;
     std::optional<std::unordered_set<node_type>> closed_set_;
 
-    /// Jump and add nodes to the open set
+
+    /// Get search direction from current node to the next node
     /// @param current_node
     /// @param next_node
-    void jump(const node_type& current_node, const node_type& next_node);
+    /// @return
+    common::search_direction get_direction(const node_type& current_node, const node_type& next_node) const;
 
-    /// Check if the given node has forced neighbors
+
+    /// check if a given node is forced
     /// @param current_node
-    /// @return return true if current node has forced neighbors
-    bool check_for_forced_neighbors(const node_type& current_node) const;
+    /// @param direction
+    /// @return
+    bool is_forced(const node_type& current_node, common::search_direction direction) const;
+
+    ///
+    /// @param current_node
+    /// @param direction
+    /// @return
+    std::optional<std::vector<node_type>> get_pruned_neighbors(const node_type& current_node, common::search_direction direction) const;
+
+    /// Jump nodes acccording to symmetry in the grid
+    /// @param node
+    /// @param direction
+    std::optional<NodeType> jump(const node_type& node, common::search_direction direction) const;
+
+
+    /// Return successor nodes
+    /// @param node
+    /// @return
+    std::vector<NodeType> identify_successors(const node_type& node, common::search_direction direction) const;
+
+
+    /// Applies the given func to all pruned_neighbors
+    /// @tparam Func
+    /// @param current_node
+    /// @param func
+    template <typename Func>
+    void for_each_pruned_neighbor(const node_type& current_node, common::search_direction direction, Func&& func) const;
+
 };
 
 } // namespace pl::algorithms
